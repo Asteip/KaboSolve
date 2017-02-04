@@ -1,0 +1,13 @@
+# Some comment...
+
+# Variables
+var:x,y,z
+
+# Domains
+domain x:{0,5.1,14}
+domain y:{4,3,6}
+domain z:{1,5,7,9}
+
+# Constraint
+constraint c1: sum(...)
+constraint c2: sum(sum())
