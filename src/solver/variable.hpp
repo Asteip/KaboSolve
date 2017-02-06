@@ -16,9 +16,14 @@ class Variable{
 public:
 
 	/*!
-	 * \brief Create a variable
+	 * \brief Create a new instance of a variable.
+	 * \param name The name of the variable.
+	 * \param id Unique identifier of a variable
+	 * \param domain The domain of a variable passed by reference
 	 */
 	Variable(std::string name, int id, Domain &domain);
+
+	// ACCESSOR AND MODIFIER
 
 	/*!
 	 * \brief Accessor of the variable's name.
@@ -40,19 +45,19 @@ public:
 
 	/*!
 	 * \brief Modifier of the variable's name.
-	 * \param The new name of the variable.
+	 * \param name The new name of the variable.
 	 */
 	void setName(std::string name);
 	
 	/*!
 	 * \brief Modifier of the variable's id.
-	 * \param The new id of the variable.
+	 * \param id The new id of the variable.
 	 */
 	void setId(int id);
 	
 	/*!
 	 * \brief Modifier of the variable's domain.
-	 * \param The new domain of the variable.
+	 * \param domain The new domain of the variable passed by reference.
 	 */
 	void setDomain(Domain &domain);
 

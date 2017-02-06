@@ -4,13 +4,50 @@
 #include "variable.hpp"
 #include "domain.hpp"
 
+/*!
+ * \brief Represent a constraint of a constraint satisfaction problem.
+ * \details This class represent a sum constraint of a satisfaction problem,
+ * it can be an equal or an inequality constraint.
+ */
 class Constraint{
 
 public:
-	Constraint();
+	static const int EQUAL = 0;
+	static const int INF_OR_EQUAL = 1;
+	static const int INF = 2;
+	static const int SUP_OR_EQUAL = 3;
+	static const int SUP = 4;
+
+	/*!
+	 * \brief Create a new instance of a constraint.
+	 * \param type
+	 * \param constraintTabSize
+	 * \param constraintTab
+	 * \param rightMember
+	 * \param variable
+	 */
+	Constraint(int type, int constraintTabSize, int &constraintTab, int rightMember, Variable &variable);
+
+	/*!
+	 * \brief Destructor of Constraint
+	 * \details delete the constraintTabSize.
+	 */
+	~Constraint();
+
+	// ACCESSOR AND MODIFIER
+
+	int getType();
+	int getConstraintSize();
+	int getCoefficient(int index);
+	int getRightMember();
 
 private:
-	
+	int _type;
+	int * _constraintTab;
+	int _constraintTabSize;
+	int _rightMember;
+
+	Variable * _variable;
 };
 
 #endif
