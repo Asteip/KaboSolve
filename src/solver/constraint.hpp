@@ -17,14 +17,16 @@ public:
 	static const int INF = 2;
 	static const int SUP_OR_EQUAL = 3;
 	static const int SUP = 4;
+	static const int DIFF = 5;
+	static const int ALL_DIFF = 6;
 
 	/*!
 	 * \brief Create a new instance of a constraint.
-	 * \param type
-	 * \param constraintTabSize
-	 * \param constraintTab
-	 * \param rightMember
-	 * \param variable
+	 * \param type The type of the constraint
+	 * \param constraintTabSize The size of the array that contains left members of the constraint.
+	 * \param constraintTab The array that contains left members of the constraint.
+	 * \param rightMember The right member of the constraint
+	 * \param variable The variables concerns by the constraint
 	 */
 	Constraint(int type, int constraintTabSize, int &constraintTab, int rightMember, Variable &variable);
 

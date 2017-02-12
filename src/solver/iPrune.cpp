@@ -1,6 +1,5 @@
 #include "iPrune.hpp"
 
-IPrune::IPrune(){
-	
+IPrune::IPrune(){	
 }
 

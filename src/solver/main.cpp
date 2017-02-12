@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int main(void){
+int main(int argc, char **argv){
 	cout << "Démarrage du solver..." << endl;
 	
 	int *coco = new int [10];

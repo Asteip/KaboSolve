@@ -1,6 +1,6 @@
 CXX=g++
-CXXFLAGS=-g -O2 -std=c++11
-LDFLAGS=
+CXXFLAGS=-g -O2
+LDFLAGS=-std=c++11
 
 TARGET=KaboSolve
 HPP_FILE=$(wildcard src/solver/*.hpp) $(wildcard src/prune/*.hpp)
