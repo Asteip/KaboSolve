@@ -77,7 +77,8 @@ int Domain::posValInfOuEgale(int val) {
 }
 
 // CONSTRUCTEUR
-Domain::Domain(int n, int *set) {
+Domain::Domain(int id, int n, int *set) {
+	this->id = id;
 	this->n = n;
 	this->size = n;
 	this->nbPruned = 0;
@@ -161,6 +162,10 @@ void Domain::reset() {
 }
 
 // ACCESSEURS
+int Domain::getId() {
+	return id;
+}
+
 int Domain::getN() {
 	return n;
 }
@@ -188,6 +193,7 @@ bool Domain::getIsSet() {
 
 
 void Domain::affichage() {
+	cout << "id=" << id << endl;
 	cout << "n=" << n << endl;
 	cout << "size=" << size << endl;
 	cout << "nbPruned=" << nbPruned << endl;

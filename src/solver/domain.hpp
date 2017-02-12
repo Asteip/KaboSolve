@@ -3,6 +3,7 @@
 
 class Domain {
 	private:
+		int id;
 		int n;
 		int size;
 		int nbPruned;
@@ -23,7 +24,7 @@ class Domain {
 
 	public:
 		// CONSTRUCTEUR
-		Domain(int n, int *set);
+		Domain(int id, int n, int *set);
 
 		// FIXAGE
 		void fixer();
@@ -38,6 +39,7 @@ class Domain {
 		void reset();
 
 		// ACCESSEURS
+		int getId();
 		int getN();
 		int getSize();
 		int getMin();

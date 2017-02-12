@@ -19,7 +19,7 @@ int main(int argc, char **argv){
 		coco[i] = rand() % 100;
 	}
 
-	Domain d(10, coco);
+	Domain d(1, 10, coco);
 
 
 	d.prunerValeur(5, 20);
