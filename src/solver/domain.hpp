@@ -6,8 +6,6 @@ class Domain {
 		int n;
 		int size;
 		int nbPruned;
-		int min;
-		int max;
 		int value;
 		bool isSet;
 
@@ -42,6 +40,9 @@ class Domain {
 		int getMax();
 		int getValue();
 		bool getIsSet();
+
+		// AFFICHAGE DEBUG
+		void affichage();
 };
 
 #endif

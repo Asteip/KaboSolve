@@ -86,14 +86,9 @@ Domain::Domain(int n, int *set) {
 	this->nbPruned = 0;
 	this->possibles = set;
 	triBulle();
-	this->possibles = new int[n];
-	for (int i = 0; i < n; ++i) {
-		this->possibles[i] = i;
-	}
 	this->indexes = new int[n];
 	this->pruned = new int[n];
-	this->min = possibles[0];
-	this->max = possibles[n-1];
+	this->isSet = false;
 }
 
 // FIXAGE
@@ -105,18 +100,15 @@ void Domain::fixer() {
 
 // PRUNAGES
 void Domain::prunerValeur(int id, int val) {
-	if ((val >= min) && (val <= max)) {
+	if ((val >= possibles[0]) && (val <= possibles[size-1])) {
 		int ind = indVal(val);
 		if (ind != -1) {
 			pruned[nbPruned] = val;
 			indexes[nbPruned] = id;
 			++nbPruned;
 			--size;
-			if (size && (val == min)) {
-				min = possibles[0];
-			}
-			if (size && (val == max)) {
-				max = possibles[size];
+			for (int i = ind; i < size; ++i) {
+				possibles[i] = possibles[i+1];
 			}
 		}
 	}
@@ -125,20 +117,19 @@ void Domain::prunerValeur(int id, int val) {
 // BACKTRACK
 void Domain::backtrack(int id) {
 	int i, ind;
-	i = nbPruned;
-	while (indexes[nbPruned] == id) {
+	while (indexes[nbPruned-1] == id) {
+		--nbPruned;
 		ind = indPossiblesInd(pruned[nbPruned]);
 		for (i = size; i > ind; --i) {
 			possibles[i] = possibles[i-1];
 		}
 		possibles[i] = pruned[nbPruned];
-		--nbPruned;
 		++size;
 	}
 }
 
 void Domain::reset() {
-	backtrack(-1);
+	this->backtrack(-1);
 }
 
 // ACCESSEURS
@@ -151,11 +142,11 @@ int Domain::getSize() {
 }
 
 int Domain::getMin() {
-	return min;
+	return possibles[0];
 }
 
 int Domain::getMax() {
-	return max;
+	return possibles[size-1];
 }
 
 int Domain::getValue() {
@@ -165,4 +156,23 @@ int Domain::getValue() {
 
 bool Domain::getIsSet() {
 	return isSet;
+}
+
+
+void Domain::affichage() {
+	cout << "n=" << n << endl;
+	cout << "size=" << size << endl;
+	cout << "nbPruned=" << nbPruned << endl;
+	cout << "value=" << value << endl;
+	cout << "isSet=" << isSet << endl << endl;
+
+	cout << "possibles :" << endl;
+	for (int i = 0; i < size; ++i) {
+		cout << i << ": " << possibles[i] << endl;
+	}
+
+	cout << endl << "pruned | indexes :" << endl;
+	for (int i = 0; i < nbPruned; ++i) {
+		cout << i << ": " << pruned[i] << " | " << indexes[i] << endl;
+	}
 }

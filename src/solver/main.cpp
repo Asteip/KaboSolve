@@ -1,23 +1,39 @@
+#include "solver.hpp"
+#include "domain.hpp"
+
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
 
-#include "solver.hpp"
-#include "domain.hpp"
-
 using namespace std;
 
 int main(int argc, char **argv){
-	srand(time(NULL));
-	
-	cout << "Démarrage du solver..." << endl;
+	//srand(time(NULL));
+	srand(5);
+
+	cout << "Démarrage du solver..." << endl << endl;
 	
 	int *coco = new int [10];
 	for (int i = 0; i < 10; ++i) {
-		coco[i] = 20 - 2*i;
+		coco[i] = rand() % 100;
 	}
-	Domain D(10, coco);
+
+	Domain d(10, coco);
+
+
+	d.prunerValeur(5, 20);
+	d.prunerValeur(7, 32);
+	d.fixer();
+	d.fixer();
+	d.fixer();
+	d.fixer();
+	d.reset();
+
+	cout << d.getMin() << endl;
+	cout << d.getMax() << endl;
+
+	d.affichage();
 
 	return 0;
 }
