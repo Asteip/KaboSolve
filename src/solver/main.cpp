@@ -30,8 +30,9 @@ int main(int argc, char **argv){
 	d.fixer();
 	d.reset();
 
-	cout << d.getMin() << endl;
-	cout << d.getMax() << endl;
+	d.affichage();
+
+	d.prunerInf(8, 52);
 
 	d.affichage();
 

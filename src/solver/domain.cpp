@@ -27,10 +27,11 @@ void Domain::triBulle() {
 	} while(!fini);
 }
 
-int Domain::indVal(int val) {
+int Domain::dichotomie(int val) {
+	assert(size > 0);
 	int inf, sup, ind, valInd;
 	inf = 0;
-	sup = n;
+	sup = size;
 	ind = sup/2;
 	valInd = possibles[ind];
 	while ((sup > inf+1) && (valInd != val)) {
@@ -42,41 +43,37 @@ int Domain::indVal(int val) {
 		ind = inf + (sup-inf)/2;
 		valInd = possibles[ind];
 	}
+	return ind;
+}
 
-	if (valInd != val) {
+int Domain::indVal(int val) {
+	int ind = dichotomie(val);
+
+	if (possibles[ind] != val) {
 		ind = -1;
 	}
 
 	return ind;
 }
 
-int Domain::indPossiblesInd(int ind) {
-	if (size > 0) {
-		int inf, sup, i, indI;
-		inf = 0;
-		sup = size;
-		i = sup/2;
-		indI = possibles[i];
-		while ((sup > inf+1) && ((indI-ind)*(indI-ind) > 1)) {
-			if (indI > ind) {
-				sup = i;
-			} else {
-				inf = i;
-			}
-			i = inf + (sup-inf)/2;
-			indI = possibles[i];
-		}
+int Domain::posValSupOuEgale(int val) {
+	int ind = dichotomie(val);
 
-		if (possibles[i] < ind) {
-			++i;
-		} else if ((i > 0) && (possibles[i] > ind)) {
-			--i;
-		}
-
-		return i;
-	} else {
-		return 0;
+	if (possibles[ind] < val) {
+		++ind;
 	}
+
+	return ind;
+}
+
+int Domain::posValInfOuEgale(int val) {
+	int ind = dichotomie(val);
+
+	if (possibles[ind] > val) {
+		--ind;
+	}
+
+	return ind;
 }
 
 // CONSTRUCTEUR
@@ -114,12 +111,42 @@ void Domain::prunerValeur(int id, int val) {
 	}
 }
 
+void Domain::prunerSup(int id, int val) {
+	if (val <= possibles[size-1]) {
+		int ind = posValSupOuEgale(val);
+		int diff = size-ind;
+		for (int i = size-1; i >= ind; --i) {
+			pruned[nbPruned] = possibles[i];
+			indexes[nbPruned] = id;
+			++nbPruned;
+		}
+		size = size - diff;
+	}
+}
+
+void Domain::prunerInf(int id, int val) {
+	if (val >= possibles[0]) {
+		int ind = posValInfOuEgale(val);
+		int i;
+		for (i = ind; i >= 0; --i) {
+			pruned[nbPruned] = possibles[i];
+			indexes[nbPruned] = id;
+			possibles[i] = possibles[i+ind+1];
+			++nbPruned;
+		}
+		for (i = ind+1; i < size; ++i) {
+			possibles[i] = possibles[i+ind+1];
+		}
+		size = size - ind - 1;
+	}
+}
+
 // BACKTRACK
 void Domain::backtrack(int id) {
 	int i, ind;
 	while (indexes[nbPruned-1] == id) {
 		--nbPruned;
-		ind = indPossiblesInd(pruned[nbPruned]);
+		ind = posValSupOuEgale(pruned[nbPruned]);
 		for (i = size; i > ind; --i) {
 			possibles[i] = possibles[i-1];
 		}
@@ -130,6 +157,7 @@ void Domain::backtrack(int id) {
 
 void Domain::reset() {
 	this->backtrack(-1);
+	isSet = false;
 }
 
 // ACCESSEURS

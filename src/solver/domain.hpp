@@ -16,8 +16,10 @@ class Domain {
 	private:
 		// UTILITAIRES
 		void triBulle();
+		int dichotomie(int val);
 		int indVal(int val);
-		int indPossiblesInd(int ind);
+		int posValSupOuEgale(int ind);		// Position de la plus petite valeur supérieure ou égale
+		int posValInfOuEgale(int ind);		// Position de la plus grande valeur inférieure ou égale
 
 	public:
 		// CONSTRUCTEUR
@@ -28,6 +30,8 @@ class Domain {
 
 		// PRUNAGES
 		void prunerValeur(int id, int val);
+		void prunerSup(int id, int val);
+		void prunerInf(int id, int val);
 
 		// BACKTRACK
 		void backtrack(int id);
