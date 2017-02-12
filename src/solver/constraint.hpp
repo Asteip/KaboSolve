@@ -1,7 +1,6 @@
 #ifndef CONSTRAINT_HPP
 #define CONSTRAINT_HPP
 
-#include "variable.hpp"
 #include "domain.hpp"
 
 /*!
@@ -28,7 +27,7 @@ public:
 	 * \param rightMember The right member of the constraint
 	 * \param variable The variables concerns by the constraint
 	 */
-	Constraint(int type, int constraintTabSize, int &constraintTab, int rightMember, Variable &variable);
+	Constraint(int type, int constraintTabSize, int &constraintTab, int rightMember);
 
 	/*!
 	 * \brief Destructor of Constraint
@@ -48,8 +47,6 @@ private:
 	int * _constraintTab;
 	int _constraintTabSize;
 	int _rightMember;
-
-	Variable * _variable;
 };
 
 #endif

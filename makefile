@@ -1,14 +1,11 @@
 CXX=g++
-CXXFLAGS=-g -O2
+CXXFLAGS=-g -Ofast
 LDFLAGS=-std=c++11
 
 TARGET=KaboSolve
-HPP_FILE=$(wildcard src/solver/*.hpp) $(wildcard src/prune/*.hpp)
+HPP_FILE=$(wildcard src/solver/*.hpp)
 SRC_SOLVER=$(wildcard src/solver/*.cpp)
-SRC_PRUNE=$(wildcard src/prune/*.cpp)
 OBJ_SOLVER=$(SRC_SOLVER:.cpp=.o)
-OBJ_PRUNE=$(SRC_PRUNE:.cpp=.o)
-
 
 all: $(TARGET)
 
@@ -23,4 +20,4 @@ kaboSolve.o: $(HPP_FILE)
 .PHONY: clean
 
 clean:
-	-rm src/solver/*.o src/prune/*.o KaboSolve
+	-rm src/solver/*.o KaboSolve

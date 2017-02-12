@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "solver.hpp"
-#include "problem.hpp"
 #include "domain.hpp"
 
 using namespace std;
