@@ -6,11 +6,10 @@ class Domain {
 		int n;
 		int size;
 		int nbPruned;
-		int indMin;
-		int indMax;
-
-		int *set;		// Valeurs du domaine
-		bool *isPruned;	// isPruned[i] = vrai si set[i] est pruné
+		int min;
+		int max;
+		int value;
+		bool isSet;
 
 		int *possibles; // Indices des valeurs possibles du domaine
 		int *pruned;	// Indices des valeurs prunées du domaine
@@ -21,22 +20,28 @@ class Domain {
 		void triBulle();
 		int indVal(int val);
 		int indPossiblesInd(int ind);
-		int indPrunedInd(int ind);
-		void setPruned(int ind);
-		void setPossible(int ind);
 
 	public:
 		// CONSTRUCTEUR
 		Domain(int n, int *set);
+
+		// FIXAGE
+		void fixer();
+
+		// PRUNAGES
+		void prunerValeur(int id, int val);
+
+		// BACKTRACK
+		void backtrack(int id);
+		void reset();
 
 		// ACCESSEURS
 		int getN();
 		int getSize();
 		int getMin();
 		int getMax();
-
-		// PRUNAGES
-		void prunerValeur(int id, int val);
+		int getValue();
+		bool getIsSet();
 };
 
 #endif
