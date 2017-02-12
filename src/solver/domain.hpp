@@ -18,8 +18,8 @@ class Domain {
 		void triBulle();
 		int dichotomie(int val);
 		int indVal(int val);
-		int posValSupOuEgale(int ind);		// Position de la plus petite valeur supérieure ou égale
-		int posValInfOuEgale(int ind);		// Position de la plus grande valeur inférieure ou égale
+		int posValSupOuEgale(int val);		// Position de la plus petite valeur supérieure ou égale
+		int posValInfOuEgale(int val);		// Position de la plus grande valeur inférieure ou égale
 
 	public:
 		// CONSTRUCTEUR
