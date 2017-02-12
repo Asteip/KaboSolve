@@ -1,12 +1,13 @@
 #ifndef CONSTRAINT_HPP
 #define CONSTRAINT_HPP
 
+#include <iostream>
 #include "domain.hpp"
 
 /*!
  * \brief Represent a constraint of a constraint satisfaction problem.
  * \details This class represent a sum constraint of a satisfaction problem,
- * it can be an equal or an inequality constraint.
+ * it can be an equal, a different or an inequality constraint.
  */
 class Constraint{
 
@@ -21,32 +22,45 @@ public:
 
 	/*!
 	 * \brief Create a new instance of a constraint.
-	 * \param type The type of the constraint
+	 * \param type The type of the constraint.
 	 * \param constraintTabSize The size of the array that contains left members of the constraint.
 	 * \param constraintTab The array that contains left members of the constraint.
-	 * \param rightMember The right member of the constraint
-	 * \param variable The variables concerns by the constraint
+	 * \param rightMember The right member of the constraint.
+	 * \param domainTab The set of all domain identified by their id.
+	 * \param domainTabSize The size of domainTab.
 	 */
-	Constraint(int type, int constraintTabSize, int &constraintTab, int rightMember);
+	Constraint(int type, int constraintTabSize, int &constraintTab, int rightMember, Domain &domainTab, int domainTabSize);
 
 	/*!
-	 * \brief Destructor of Constraint
-	 * \details delete the constraintTabSize.
+	 * \brief Destructor of Constraint.
+	 * \details Delete the constraintTabSize.
 	 */
 	~Constraint();
 
-	// ACCESSOR AND MODIFIER
+	/*!
+	 * \brief Prune the set of domain.
+	 * \details This function is called when a variable is fixed in a domain.
+	 * All domain are pruned using this constraint.
+	 */
+	void prune();
+
+	// ACCESSORS
 
 	int getType();
-	int getConstraintSize();
-	int getCoefficient(int index);
+	int * getConstraintTab();
+	int getConstraintTabSize();
 	int getRightMember();
+	Domain * getDomainTab();
+	int getDomainTabSize();
 
 private:
 	int _type;
-	int * _constraintTab;
+	int *_constraintTab;
 	int _constraintTabSize;
 	int _rightMember;
+
+	Domain *_domainTab;
+	int _domainTabSize;
 };
 
 #endif
