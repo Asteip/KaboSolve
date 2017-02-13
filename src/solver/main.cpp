@@ -1,6 +1,7 @@
 #include "solver.hpp"
 #include "domain.hpp"
 #include "constraint.hpp"
+#include "constraints/cInfOrEqual.hpp"
 
 #include <iostream>
 #include <cstdio>
@@ -38,13 +39,13 @@ int main(int argc, char **argv){
 		toto[i] = 1 + rand() % 3;
 	}
 
-	Constraint c(1, toto, 250, d, 5);
+	Constraint * c = new CInfOrEqual(toto, 250, d, 5);
 
 	cout << endl << endl << "CONTRAINTE" << endl;
-	c.afficher();
+	c->display();
 
 	cout << endl << "PRUNAGE" << endl;
-	c.prune(5);
+	c->applyConstraint(5);
 
 	cout << endl << "ENSEMBLES APRES PRUNAGE" << endl;
 	for (int j = 0; j < 5; ++j) {

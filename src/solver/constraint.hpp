@@ -12,54 +12,41 @@
 class Constraint {
 
 public:
-	static const int EQUAL = 0;
-	static const int INF_OR_EQUAL = 1;
-	static const int INF = 2;
-	static const int SUP_OR_EQUAL = 3;
-	static const int SUP = 4;
-	static const int DIFF = 5;
-	static const int ALL_DIFF = 6;
-
 	/*!
 	 * \brief Create a new instance of a constraint.
-	 * \param type The type of the constraint.
-	 * \param constraintTabSize The size of the array that contains left members of the constraint.
-	 * \param constraintTab The array that contains left members of the constraint.
+	 * \param coefficients The array that contains left members of the constraint.
 	 * \param rightMember The right member of the constraint.
-	 * \param domainTab The set of all domain identified by their id.
-	 * \param domainTabSize The size of domainTab.
+	 * \param domains The set of all domain identified by their id.
+	 * \param size The number of variables (ie : the number of coefficicents and domains)
 	 */
-	Constraint(int type, int *coefficients, int rightMember, Domain **domainTab, int size);
+	Constraint(int *coefficients, int rightMember, Domain **domains, int size);
 
 	/*!
 	 * \brief Destructor of Constraint.
-	 * \details Delete the constraintTabSize.
 	 */
-	~Constraint();
+	virtual ~Constraint();
 
 	/*!
-	 * \brief Prune the set of domain.
+	 * \brief Verify that the constraint is respected.
 	 * \details This function is called when a variable is fixed in a domain.
-	 * All domain are pruned using this constraint.
+	 * All domain are checked using this constraint.
 	 */
-	void prune(int id);
+	virtual void applyConstraint(int id) = 0;
+
+	void display();
 
 	// ACCESSORS
 
-	int getType();
 	int * getCoefficients();
 	int getSize();
 	int getRightMember();
-	Domain ** getDomainTab();
+	Domain ** getDomains();
 
-	void afficher();
-
-private:
-	int _type;
+protected:
 	int *_coefficients;
 	int _size;
 	int _rightMember;
-	Domain **_domainTab;
+	Domain **_domains;
 };
 
 #endif
