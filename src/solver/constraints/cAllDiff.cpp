@@ -1,6 +1,6 @@
 #include "cAllDiff.hpp"
 
-CAllDiff::CAllDiff(int *coefficients, int rightMember, Domain **domains, int size) : Constraint(coefficients, rightMember, domains, size){
+CAllDiff::CAllDiff(Domain **domains, int size) : Constraint(domains, size){
 }
 
 CAllDiff::~CAllDiff(){

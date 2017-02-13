@@ -1,6 +1,8 @@
 #include "cInf.hpp"
 
-CInf::CInf(int *coefficients, int rightMember, Domain **domains, int size) : Constraint(coefficients, rightMember, domains, size){
+CInf::CInf(int *coefficients, int rightMember, Domain **domains, int size) : Constraint(domains, size){
+	_coefficients = coefficients;
+	_rightMember = rightMember;
 }
 
 CInf::~CInf(){

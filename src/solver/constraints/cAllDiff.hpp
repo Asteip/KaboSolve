@@ -6,7 +6,7 @@
 class CAllDiff : public Constraint{
 
 public:
-	CAllDiff(int *coefficients, int rightMember, Domain **domains, int size);
+	CAllDiff(Domain **domains, int size);
 	~CAllDiff();
 
 	virtual void applyConstraint(int id);

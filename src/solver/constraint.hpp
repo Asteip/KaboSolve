@@ -33,16 +33,15 @@ public:
 	 */
 	virtual void applyConstraint(int id) = 0;
 
-	// ACCESSORS
-
-	int * getCoefficients();
-	int getSize();
-	int getRightMember();
-	Domain ** getDomains();
 	/*!
 	 * \brief Display information to the standard output.
 	 */
 	virtual void display() = 0;
+
+	// ACCESSORS
+
+	virtual int getSize();
+	virtual Domain ** getDomains();
 
 protected:
 	int _size;

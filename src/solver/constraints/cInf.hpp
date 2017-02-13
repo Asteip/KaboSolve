@@ -10,6 +10,11 @@ public:
 	~CInf();
 
 	virtual void applyConstraint(int id);
+	
+private:
+	int *_coefficients;
+	int _rightMember;
+
 };
 
 #endif
