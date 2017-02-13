@@ -39,7 +39,7 @@ int main(int argc, char **argv){
 		toto[i] = 1 + rand() % 3;
 	}
 
-	Constraint * c = new CInfOrEqual(toto, 250, d, 5);
+	Constraint * c = new CInfOrEqual(toto, 150, d, 5);
 
 	cout << endl << endl << "CONTRAINTE" << endl;
 	c->display();

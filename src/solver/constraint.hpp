@@ -19,7 +19,7 @@ public:
 	 * \param domains The set of all domain identified by their id.
 	 * \param size The number of variables (ie : the number of coefficicents and domains)
 	 */
-	Constraint(int *coefficients, int rightMember, Domain **domains, int size);
+	Constraint(Domain **domains, int size);
 
 	/*!
 	 * \brief Destructor of Constraint.
@@ -33,7 +33,7 @@ public:
 	 */
 	virtual void applyConstraint(int id) = 0;
 
-	void display();
+	//void display();
 
 	// ACCESSORS
 
@@ -41,11 +41,10 @@ public:
 	int getSize();
 	int getRightMember();
 	Domain ** getDomains();
+	virtual void display() = 0;
 
 protected:
-	int *_coefficients;
 	int _size;
-	int _rightMember;
 	Domain **_domains;
 };
 

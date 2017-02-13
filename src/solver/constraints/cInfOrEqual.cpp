@@ -1,6 +1,12 @@
 #include "cInfOrEqual.hpp"
 
-CInfOrEqual::CInfOrEqual(int *coefficients, int rightMember, Domain **domains, int size) : Constraint(coefficients, rightMember, domains, size){
+#include <iostream>
+
+using namespace std;
+
+CInfOrEqual::CInfOrEqual(int *coefficients, int rightMember, Domain **domains, int size) : Constraint(domains, size){
+	_coefficients = coefficients;
+	_rightMember = rightMember;
 }
 
 CInfOrEqual::~CInfOrEqual(){
@@ -33,4 +39,14 @@ void CInfOrEqual::applyConstraint(int id){
 			}
 		}
 	}
+}
+
+void CInfOrEqual::display() {
+	cout << "size=" << _size << endl;
+	cout << "rightMember=" << _rightMember << endl;
+	cout << endl << "contrainte : ";
+	for (int i = 0; i < _size; ++i) {
+		cout << _coefficients[i] << "*X" << _domains[i]->getId() << " + ";
+	}
+	cout << " <= " << _rightMember << endl;
 }
