@@ -3,10 +3,10 @@
 
 class Node{
 
-public:
-	Node();
+	public:
+		Node();
 
-private:
+	private:
 	
 };
 

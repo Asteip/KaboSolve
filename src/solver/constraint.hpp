@@ -42,7 +42,7 @@ public:
 	 * \details This function is called when a variable is fixed in a domain.
 	 * All domain are pruned using this constraint.
 	 */
-	void prune();
+	void prune(int id);
 
 	// ACCESSORS
 

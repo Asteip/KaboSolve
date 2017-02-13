@@ -12,7 +12,7 @@ Constraint::Constraint(int type, int *coefficients, int rightMember, Domain **do
 	_size = size;
 }
 
-Constraint::~Constraint(){
+Constraint::~Constraint() {
 	for (int i = 0; i < _size; ++i) {
 		delete(_domainTab[i]);
 	}
@@ -21,7 +21,7 @@ Constraint::~Constraint(){
 }
 
 // TODO modifier cette classe pour éviter la duplication de code.
-void Constraint::prune(){
+void Constraint::prune(int id) {
 	/*if(_type == EQUAL){
 		for(int i = 0 ; i < _domainTabSize ; ++i){
 			//if(domainTab[i].)
@@ -31,21 +31,21 @@ void Constraint::prune(){
 	if(_type == INF_OR_EQUAL) {
 		for(int i = 0; i < _size; ++i) {
 			int t  = _rightMember;
-
-			for(int j = 0; j < _size; ++j) {
-				if (j != i) {
-					if(_domainTab[j]->getIsSet()) {
-						t += -_coefficients[j]*_domainTab[j]->getValue();
-					} else {
-						t += -_coefficients[j]*_domainTab[j]->getMin();
+			if (!_domainTab[i]->getIsSet()) {
+				for(int j = 0; j < _size; ++j) {
+					if (i!=j) {
+						if(_domainTab[j]->getIsSet()) {
+							t += -_coefficients[j]*_domainTab[j]->getValue();
+						} else {
+							t += -_coefficients[j]*_domainTab[j]->getMin();
+						}
 					}
 				}
+
+				t /= _coefficients[i];
+				cout << "t=" << t << endl;
+				_domainTab[i]->prunerSup(id, t+1);
 			}
-
-			t /= _coefficients[i];
-			cout << "t=" << t << endl;
-
-			_domainTab[i]->prunerSup(_domainTab[i]->getId(), t);
 		}
 	}
 
@@ -121,23 +121,23 @@ void Constraint::prune(){
 	}*/
 }
 
-int Constraint::getType(){
+int Constraint::getType() {
 	return _type;
 }
 
-int * Constraint::getCoefficients(){
+int * Constraint::getCoefficients() {
 	return _coefficients;
 }
 
-int Constraint::getSize(){
+int Constraint::getSize() {
 	return _size;
 }
 
-int Constraint::getRightMember(){
+int Constraint::getRightMember() {
 	return _rightMember;
 }
 
-Domain ** Constraint::getDomainTab(){
+Domain ** Constraint::getDomainTab() {
 	return _domainTab;
 }
 

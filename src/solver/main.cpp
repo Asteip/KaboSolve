@@ -35,16 +35,16 @@ int main(int argc, char **argv){
 
 	int *toto = new int [5];
 	for (int i = 0; i < 5; ++i) {
-		toto[i] = 1 + rand() % 9;
+		toto[i] = 1 + rand() % 3;
 	}
 
-	Constraint c(1, toto, 200, d, 5);
+	Constraint c(1, toto, 250, d, 5);
 
 	cout << endl << endl << "CONTRAINTE" << endl;
 	c.afficher();
 
 	cout << endl << "PRUNAGE" << endl;
-	c.prune();
+	c.prune(5);
 
 	cout << endl << "ENSEMBLES APRES PRUNAGE" << endl;
 	for (int j = 0; j < 5; ++j) {
