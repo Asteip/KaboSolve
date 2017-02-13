@@ -1,5 +1,6 @@
 #include "solver.hpp"
 #include "domain.hpp"
+#include "constraint.hpp"
 
 #include <iostream>
 #include <cstdio>
@@ -10,31 +11,45 @@ using namespace std;
 
 int main(int argc, char **argv){
 	//srand(time(NULL));
-	srand(5);
+	srand(271);
 
 	cout << "Démarrage du solver..." << endl << endl;
 	
-	int *coco = new int [10];
-	for (int i = 0; i < 10; ++i) {
-		coco[i] = rand() % 100;
+	Domain **d = new Domain * [5];
+	int taille;
+	int **coco = new int * [5];
+	for (int i = 0; i < 5; ++i) {
+		taille = 3 + rand() % 7;
+		coco[i] = new int [taille];
+		for (int j = 0; j < taille; ++j) {
+			coco[i][j] = rand() % 100;
+		}
+		d[i] = new Domain(i, taille, coco[i]);
 	}
 
-	Domain d(1, 10, coco);
 
+	cout << "ENSEMBLES DE DEPART" << endl;
+	for (int j = 0; j < 5; ++j) {
+		d[j]->affichage();
+	}
 
-	d.prunerValeur(5, 20);
-	d.prunerValeur(7, 32);
-	d.fixer();
-	d.fixer();
-	d.fixer();
-	d.fixer();
-	d.reset();
+	int *toto = new int [5];
+	for (int i = 0; i < 5; ++i) {
+		toto[i] = 1 + rand() % 9;
+	}
 
-	d.affichage();
+	Constraint c(1, toto, 200, d, 5);
 
-	d.prunerInf(8, 52);
+	cout << endl << endl << "CONTRAINTE" << endl;
+	c.afficher();
 
-	d.affichage();
+	cout << endl << "PRUNAGE" << endl;
+	c.prune();
+
+	cout << endl << "ENSEMBLES APRES PRUNAGE" << endl;
+	for (int j = 0; j < 5; ++j) {
+		d[j]->affichage();
+	}
 
 	return 0;
 }

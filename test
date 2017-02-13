@@ -1,0 +1,169 @@
+Démarrage du solver...
+
+ENSEMBLES DE DEPART
+id=0
+n=6
+size=6
+nbPruned=0
+value=0
+isSet=0
+
+possibles :
+0: 13
+1: 22
+2: 59
+3: 82
+4: 84
+5: 97
+
+pruned | indexes :
+id=1
+n=4
+size=4
+nbPruned=0
+value=0
+isSet=0
+
+possibles :
+0: 7
+1: 42
+2: 82
+3: 88
+
+pruned | indexes :
+id=2
+n=3
+size=3
+nbPruned=0
+value=0
+isSet=0
+
+possibles :
+0: 2
+1: 27
+2: 98
+
+pruned | indexes :
+id=3
+n=7
+size=7
+nbPruned=0
+value=0
+isSet=0
+
+possibles :
+0: 23
+1: 40
+2: 42
+3: 55
+4: 56
+5: 57
+6: 70
+
+pruned | indexes :
+id=4
+n=5
+size=5
+nbPruned=0
+value=0
+isSet=0
+
+possibles :
+0: 9
+1: 38
+2: 63
+3: 72
+4: 80
+
+pruned | indexes :
+
+
+CONTRAINTE
+size=5
+rightMember=200
+
+contrainte : 8*X0 + 1*X1 + 6*X2 + 6*X3 + 1*X4 +  <= 200
+
+PRUNAGE
+t=4
+t=-63
+t=-9
+t=11
+t=-61
+
+ENSEMBLES APRES PRUNAGE
+id=0
+n=6
+size=0
+nbPruned=6
+value=0
+isSet=0
+
+possibles :
+
+pruned | indexes :
+0: 97 | 0
+1: 84 | 0
+2: 82 | 0
+3: 59 | 0
+4: 22 | 0
+5: 13 | 0
+id=1
+n=4
+size=0
+nbPruned=4
+value=0
+isSet=0
+
+possibles :
+
+pruned | indexes :
+0: 88 | 1
+1: 82 | 1
+2: 42 | 1
+3: 7 | 1
+id=2
+n=3
+size=0
+nbPruned=3
+value=0
+isSet=0
+
+possibles :
+
+pruned | indexes :
+0: 98 | 2
+1: 27 | 2
+2: 2 | 2
+id=3
+n=7
+size=0
+nbPruned=7
+value=0
+isSet=0
+
+possibles :
+
+pruned | indexes :
+0: 70 | 3
+1: 57 | 3
+2: 56 | 3
+3: 55 | 3
+4: 42 | 3
+5: 40 | 3
+6: 23 | 3
+id=4
+n=5
+size=0
+nbPruned=5
+value=0
+isSet=0
+
+possibles :
+
+pruned | indexes :
+0: 80 | 4
+1: 72 | 4
+2: 63 | 4
+3: 38 | 4
+4: 9 | 4

@@ -9,7 +9,7 @@
  * \details This class represent a sum constraint of a satisfaction problem,
  * it can be an equal, a different or an inequality constraint.
  */
-class Constraint{
+class Constraint {
 
 public:
 	static const int EQUAL = 0;
@@ -29,7 +29,7 @@ public:
 	 * \param domainTab The set of all domain identified by their id.
 	 * \param domainTabSize The size of domainTab.
 	 */
-	Constraint(int type, int constraintTabSize, int &constraintTab, int rightMember, Domain &domainTab, int domainTabSize);
+	Constraint(int type, int *coefficients, int rightMember, Domain **domainTab, int size);
 
 	/*!
 	 * \brief Destructor of Constraint.
@@ -47,20 +47,19 @@ public:
 	// ACCESSORS
 
 	int getType();
-	int * getConstraintTab();
-	int getConstraintTabSize();
+	int * getCoefficients();
+	int getSize();
 	int getRightMember();
-	Domain * getDomainTab();
-	int getDomainTabSize();
+	Domain ** getDomainTab();
+
+	void afficher();
 
 private:
 	int _type;
-	int *_constraintTab;
-	int _constraintTabSize;
+	int *_coefficients;
+	int _size;
 	int _rightMember;
-
-	Domain *_domainTab;
-	int _domainTabSize;
+	Domain **_domainTab;
 };
 
 #endif

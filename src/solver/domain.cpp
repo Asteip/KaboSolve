@@ -192,6 +192,7 @@ bool Domain::getIsSet() {
 }
 
 
+// AFFICHAGE DEBUG
 void Domain::affichage() {
 	cout << "id=" << id << endl;
 	cout << "n=" << n << endl;

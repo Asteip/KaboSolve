@@ -1,63 +1,65 @@
 #include "constraint.hpp"
 
-Constraint::Constraint(int type, int constraintTabSize, int &constraintTab, int rightMember, Domain &domainTab, int domainTabSize){
-	if(constraintTabSize != domainTabSize){
-		std::cerr << "The number of left member of the constraint must be equal to the number of domain (ie : the number of possible variable)." << std::endl;
-		return;
-	}
+#include <iostream>
 
+using namespace std;
+
+Constraint::Constraint(int type, int *coefficients, int rightMember, Domain **domainTab, int size) {
 	_type = type;
-	_constraintTab = &constraintTab;
-	_constraintTabSize = constraintTabSize;
+	_coefficients = coefficients;
 	_rightMember = rightMember;
-	_domainTab = &domainTab;
-	_domainTabSize = domainTabSize;
+	_domainTab = domainTab;
+	_size = size;
 }
 
 Constraint::~Constraint(){
-	delete _constraintTab;
+	for (int i = 0; i < _size; ++i) {
+		delete(_domainTab[i]);
+	}
+	delete _domainTab;
+	delete [] _coefficients;
 }
 
 // TODO modifier cette classe pour éviter la duplication de code.
 void Constraint::prune(){
-	if(_type == EQUAL){
+	/*if(_type == EQUAL){
 		for(int i = 0 ; i < _domainTabSize ; ++i){
 			//if(domainTab[i].)
 		}
-	}
+	}*/
 
-	if(_type == INF_OR_EQUAL){
-		for(int i = 0 ; i < _constraintTabSize ; ++i){
+	if(_type == INF_OR_EQUAL) {
+		for(int i = 0; i < _size; ++i) {
 			int t  = _rightMember;
 
-			for(int j = 0 ; j < _constraintTabSize ; ++j){
-				if (j != i){
-					if(_domainTab[j].getIsSet()){
-						t += -1 * _constraintTab[j] * domainTab[j].getValue();
-					}
-					else{
-						t += -1 * _constraintTab[j] * domainTab[j].getMin();
+			for(int j = 0; j < _size; ++j) {
+				if (j != i) {
+					if(_domainTab[j]->getIsSet()) {
+						t += -_coefficients[j]*_domainTab[j]->getValue();
+					} else {
+						t += -_coefficients[j]*_domainTab[j]->getMin();
 					}
 				}
 			}
 
-			t /= _constraintTab[i];
+			t /= _coefficients[i];
+			cout << "t=" << t << endl;
 
-			_domainTab[i].prunerSup(_domainTab[i].getId(), t);
+			_domainTab[i]->prunerSup(_domainTab[i]->getId(), t);
 		}
 	}
 
-	if(_type == INF){
+	/*if(_type == INF){
 		for(int i = 0 ; i < _constraintTabSize ; ++i){
 			int t  = _rightMember;
 
 			for(int j = 0 ; j < _constraintTabSize ; ++j){
 				if (j != i){
 					if(_domainTab[j].getIsSet()){
-						t += -1 * _constraintTab[j] * domainTab[j].getValue();
+						t += -1 * _constraintTab[j] * _domainTab[j].getValue();
 					}
 					else{
-						t += -1 * _constraintTab[j] * domainTab[j].getMin();
+						t += -1 * _constraintTab[j] * _domainTab[j].getMin();
 					}
 				}
 			}
@@ -75,10 +77,10 @@ void Constraint::prune(){
 			for(int j = 0 ; j < _constraintTabSize ; ++j){
 				if (j != i){
 					if(_domainTab[j].getIsSet()){
-						t += -1 * _constraintTab[j] * domainTab[j].getValue();
+						t += -1 * _constraintTab[j] * _domainTab[j].getValue();
 					}
 					else{
-						t += -1 * _constraintTab[j] * domainTab[j].getMax();
+						t += -1 * _constraintTab[j] * _domainTab[j].getMax();
 					}
 				}
 			}
@@ -96,10 +98,10 @@ void Constraint::prune(){
 			for(int j = 0 ; j < _constraintTabSize ; ++j){
 				if (j != i){
 					if(_domainTab[j].getIsSet()){
-						t += -1 * _constraintTab[j] * domainTab[j].getValue();
+						t += -1 * _constraintTab[j] * _domainTab[j].getValue();
 					}
 					else{
-						t += -1 * _constraintTab[j] * domainTab[j].getMax();
+						t += -1 * _constraintTab[j] * _domainTab[j].getMax();
 					}
 				}
 			}
@@ -116,29 +118,36 @@ void Constraint::prune(){
 
 	if(_type == ALL_DIFF){
 
-	}
+	}*/
 }
 
 int Constraint::getType(){
 	return _type;
 }
 
-int * Constraint::getConstraintTab(){
-	return _constraintTab;
+int * Constraint::getCoefficients(){
+	return _coefficients;
 }
 
-int Constraint::getConstraintTabSize(){
-	return _constraintTabSize;
+int Constraint::getSize(){
+	return _size;
 }
 
 int Constraint::getRightMember(){
 	return _rightMember;
 }
 
-Domain * Constraint::getDomainTab(){
+Domain ** Constraint::getDomainTab(){
 	return _domainTab;
 }
 
-int Constraint::getDomainTabSize(){
-	return _domainTabSize;
+
+void Constraint::afficher() {
+	cout << "size=" << _size << endl;
+	cout << "rightMember=" << _rightMember << endl;
+	cout << endl << "contrainte : ";
+	for (int i = 0; i < _size; ++i) {
+		cout << _coefficients[i] << "*X" << _domainTab[i]->getId() << " + ";
+	}
+	cout << " <= " << _rightMember << endl;
 }
