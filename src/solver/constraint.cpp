@@ -22,6 +22,7 @@ Constraint::~Constraint() {
 
 // TODO modifier cette classe pour éviter la duplication de code.
 void Constraint::prune(int id) {
+	doube td;
 	/*if(_type == EQUAL){
 		for(int i = 0 ; i < _domainTabSize ; ++i){
 			//if(domainTab[i].)
@@ -41,10 +42,16 @@ void Constraint::prune(int id) {
 						}
 					}
 				}
-
+				td = t;
 				t /= _coefficients[i];
+				td /= _coefficients[i];
 				cout << "t=" << t << endl;
-				_domainTab[i]->prunerSup(id, t+1);
+
+				if (t == td) {
+					_domainTab[i]->prunerSup(id, t);
+				} else {
+					_domainTab[i]->prunerSup(id, t+1);
+				}
 			}
 		}
 	}
