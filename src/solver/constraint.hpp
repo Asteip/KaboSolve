@@ -33,6 +33,9 @@ public:
 	 */
 	virtual void applyConstraint(int id) = 0;
 
+	/*!
+	 * \brief Display information to the standard output.
+	 */
 	void display();
 
 	// ACCESSORS
