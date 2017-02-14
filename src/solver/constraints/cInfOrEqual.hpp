@@ -3,14 +3,13 @@
 
 #include "../constraint.hpp"
 
-class CInfOrEqual : public Constraint{
+class CInfOrEqual : public Constraint {
 
 public:
 	CInfOrEqual(int *coefficients, int rightMember, Domain **domains, int size);
 	~CInfOrEqual();
 
 	void display();
-
 	virtual void applyConstraint(int id);
 
 private:

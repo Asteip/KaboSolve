@@ -3,13 +3,14 @@
 
 #include "../constraint.hpp"
 
-class CNQueen : public Constraint{
+class CNQueen : public Constraint {
 
 public:
 	CNQueen(Domain **domains, int size);
 	~CNQueen();
 
+	void display();
 	virtual void applyConstraint(int id);
 };
 
-#endif //C_N_QUEEN
+#endif

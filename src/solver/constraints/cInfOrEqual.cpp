@@ -9,8 +9,7 @@ CInfOrEqual::CInfOrEqual(int *coefficients, int rightMember, Domain **domains, i
 	_rightMember = rightMember;
 }
 
-CInfOrEqual::~CInfOrEqual(){
-}
+CInfOrEqual::~CInfOrEqual(){}
 
 void CInfOrEqual::applyConstraint(int id){
 	double td = 0.0;

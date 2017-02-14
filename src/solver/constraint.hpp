@@ -40,8 +40,8 @@ public:
 
 	// ACCESSORS
 
-	virtual int getSize();
-	virtual Domain ** getDomains();
+	int getSize();
+	Domain ** getDomains();
 
 protected:
 	int _size;
