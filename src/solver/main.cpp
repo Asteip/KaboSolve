@@ -13,12 +13,12 @@
 using namespace std;
 
 int main(int argc, char **argv){
-	srand(time(NULL));
-	//srand(271);
+	//srand(time(NULL));
+	srand(0);
 
 	cout << "Démarrage du solver..." << endl << endl;
 	
-	Domain **d = new Domain * [5];
+	/*Domain **d = new Domain * [5];
 	int taille;
 	int **coco = new int * [5];
 	for (int i = 0; i < 5; ++i) {
@@ -57,7 +57,35 @@ int main(int argc, char **argv){
 	cout << endl << "ENSEMBLES APRES PRUNAGE" << endl;
 	for (int j = 0; j < 5; ++j) {
 		d[j]->affichage();
+	}*/
+
+
+
+		////// NQUEEN
+
+	int n = 4;
+	int *set;
+
+	Domain **d = new Domain * [n];
+	Constraint **c = new Constraint * [2];
+
+	for (int i = 0; i < n; ++i) {
+		set = new int [n];
+		for (int j = 0; j < n; ++j) {
+			set[j] = j;
+		}
+		d[i] = new Domain(i, n, set);
 	}
+
+	c[0] = new CAllDiff(d, n);
+	c[1] = new CNQueen(d, n);
+
+	/*for (int i = 0; i < n; ++i) {
+		d[i]->affichage();
+	}*/
+
+	Solver s(d, n, c, 2);
+	s.solve();
 
 	return 0;
 }

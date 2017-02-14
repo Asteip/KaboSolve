@@ -14,15 +14,12 @@ CNQueen::~CNQueen() {}
 // id E {0,...,size-1}
 void CNQueen::applyConstraint(int id) {
 	cout << "id=" << id << endl;
-	int diff = id - _domains[id]->getValue();
-	if (diff < 0) {
-		diff = -diff;
-	}
+	int val = _domains[id]->getValue();
 
 	for (int i = 0; i < _size; ++i) {
-		if (i != id) {
-			_domains[i]->prunerValeur(id, i+diff);
-			_domains[i]->prunerValeur(id, diff-i);
+		if (!_domains[i]->getIsSet()) {
+			_domains[i]->prunerValeur(id, val-id+i);
+			_domains[i]->prunerValeur(id, val-i+id);
 		}
 	}
 }

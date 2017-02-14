@@ -85,6 +85,7 @@ class Domain {
 
 		// AFFICHAGE DEBUG
 		void affichage();
+		void affichageNQueen();
 };
 
 #endif
