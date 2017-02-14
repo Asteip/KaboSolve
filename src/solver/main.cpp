@@ -1,5 +1,5 @@
 #include "solver.hpp"
-#include "pNQueen.hpp"
+#include "problems/pNQueen.hpp"
 #include "domain.hpp"
 #include "constraint.hpp"
 #include "constraints/cInfOrEqual.hpp"
