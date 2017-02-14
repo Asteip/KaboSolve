@@ -9,6 +9,7 @@ public:
 	CAllDiff(Domain **domains, int size);
 	~CAllDiff();
 
+	virtual void display();
 	virtual void applyConstraint(int id);
 };
 

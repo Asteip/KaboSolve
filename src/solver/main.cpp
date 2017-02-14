@@ -3,6 +3,7 @@
 #include "constraint.hpp"
 #include "constraints/cInfOrEqual.hpp"
 #include "constraints/cNQueen.hpp"
+#include "constraints/cAllDiff.hpp"
 
 #include <iostream>
 #include <cstdio>
@@ -43,6 +44,7 @@ int main(int argc, char **argv){
 
 	//Constraint * c = new CInfOrEqual(toto, 150, d, 5);
 	Constraint * c = new CNQueen(d, 5);
+	Constraint * cdiff = new CAllDiff(d, 5);
 
 	cout << endl << endl << "CONTRAINTE" << endl;
 	c->display();
@@ -50,6 +52,7 @@ int main(int argc, char **argv){
 	cout << endl << "PRUNAGE" << endl;
 	d[0]->fixer();
 	c->applyConstraint(0);
+	cdiff->applyConstraint(0);
 
 	cout << endl << "ENSEMBLES APRES PRUNAGE" << endl;
 	for (int j = 0; j < 5; ++j) {

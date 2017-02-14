@@ -4,7 +4,7 @@
 class Solver{
 
 public:
-	Solver();
+	Solver(/*Domain **d, int nbDomain, */);
 
 private:
 	
