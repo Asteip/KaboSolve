@@ -47,9 +47,14 @@ int Domain::dichotomie(int val) {
 }
 
 int Domain::indVal(int val) {
-	int ind = dichotomie(val);
+	int ind;
+	if (size > 0) {
+		ind = dichotomie(val);
 
-	if (possibles[ind] != val) {
+		if (possibles[ind] != val) {
+			ind = -1;
+		}
+	} else {
 		ind = -1;
 	}
 
@@ -57,20 +62,32 @@ int Domain::indVal(int val) {
 }
 
 int Domain::posValSupOuEgale(int val) {
-	int ind = dichotomie(val);
+	int ind;
 
-	if (possibles[ind] < val) {
-		++ind;
+	if (size > 0) {
+		ind = dichotomie(val);
+
+		if (possibles[ind] < val) {
+			++ind;
+		}
+	} else {
+		ind = 0;
 	}
 
 	return ind;
 }
 
 int Domain::posValInfOuEgale(int val) {
-	int ind = dichotomie(val);
+	int ind;
 
-	if (possibles[ind] > val) {
-		--ind;
+	if (size > 0) {
+		ind = dichotomie(val);
+
+		if (possibles[ind] > val) {
+			--ind;
+		}
+	} else {
+		ind = 0;
 	}
 
 	return ind;
@@ -210,4 +227,15 @@ void Domain::affichage() {
 	for (int i = 0; i < nbPruned; ++i) {
 		cout << i << ": " << pruned[i] << " | " << indexes[i] << endl;
 	}
+}
+
+void Domain::affichageNQueen() {
+	cout << "{";
+	if (size > 0) {
+		cout << possibles[0];
+	}
+	for (int i = 1; i < size; ++i) {
+		 cout << ", " << possibles[i];
+	}
+	cout << "}" << endl;
 }
