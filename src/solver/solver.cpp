@@ -19,30 +19,75 @@ void Solver::solve() {
 	bool fini = false;
 	int i = 0;
 	int j;
+	Domain *d;
+	int id;
 
-	for (int k = i; k < _n; ++k) {
+	for (int k = 0; k < _n; ++k) {
 		cout << k << ": ";
 		_domains[k]->affichageNQueen();
 	}
-	while (!fini && (i > -1)) {
-		if (_domains[i]->getSize() > 0) {
-			_domains[i]->fixer();
-			cout << "val=" << _domains[i]->getValue() << endl;
-			_constraints[0]->applyConstraint(_domains[i]->getId());
-			_constraints[1]->applyConstraint(_domains[i]->getId());
-			++i;
-		} else {
-			_domains[i]->reset();
+
+
+
+
+
+
+
+
+
+
+
+	while ((i >= 0) && (i < _n)) {
+		d = _domains[i];
+		id = d->getId();
+
+		if (d->getIsSet()) {
+														cout << i << " is set" << endl;
 			for (j = i+1; j < _n; ++j) {
-				_domains[j]->backtrack(_domains[i]->getId());
+				_domains[j]->backtrack(id);
 			}
-			--i;
+			if (d->getSize() > 0) {
+				d->fixer();
+														cout << i << " est fixé à " << d->getValue() << endl;
+				_constraints[0]->applyConstraint(id);
+				_constraints[1]->applyConstraint(id);
+				++i;
+			} else {									cout << i << " est vide" << endl;
+				d->reset();
+				--i;
+			}
+		} else {
+			if (d->getSize() > 0) {
+				d->fixer();
+														cout << i << " est fixé à " << d->getValue() << endl;
+				_constraints[0]->applyConstraint(id);
+				_constraints[1]->applyConstraint(id);
+				++i;
+			} else {
+														cout << i << " est vide" << endl;
+				--i;
+			}
 		}
 
-		fini = (i == _n);
 
 
-		for (int k = i; k < _n; ++k) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		for (int k = 0; k < _n; ++k) {
 			cout << k << ": ";
 			_domains[k]->affichageNQueen();
 		}
@@ -50,7 +95,7 @@ void Solver::solve() {
 
 
 
-	if (fini) {
+	if (i > 0) {
 		for (i = 0; i < _n; ++i) {
 			cout << i << ": " << _domains[i]->getValue() << endl;
 		}

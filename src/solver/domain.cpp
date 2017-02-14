@@ -161,6 +161,10 @@ void Domain::prunerInf(int id, int val) {
 
 // BACKTRACK
 void Domain::backtrack(int id) {
+	/*for (int l = 0; l < nbPruned; ++l) {
+		cout << indexes[l] << "|";
+	}*/
+	cout << endl;
 	int i, ind;
 	while (indexes[nbPruned-1] == id) {
 		--nbPruned;
@@ -229,7 +233,7 @@ void Domain::affichage() {
 	}
 }
 
-void Domain::affichageNQueen() {
+/*void Domain::affichageNQueen() {
 	cout << "{";
 	if (size > 0) {
 		cout << possibles[0];
@@ -238,4 +242,30 @@ void Domain::affichageNQueen() {
 		 cout << ", " << possibles[i];
 	}
 	cout << "}" << endl;
+}*/
+
+void Domain::affichageNQueen() {
+	int j = 0;
+	if (!isSet) {
+		for (int i = 0; i < n; ++i) {
+			if ((j < size) && (possibles[j] == i)) {
+				cout << "_ ";
+				++j;
+			} else {
+				cout << "X ";
+			}
+		}
+	} else {
+		for (int i = 0; i < n; ++i) {
+			if (i == getValue()) {
+				cout << "O ";
+			} else if ((j < size) && (possibles[j] == i)) {
+				cout << "_ ";
+				++j;
+			} else {
+				cout << "X ";
+			}
+		}
+	}
+	cout << endl;
 }
