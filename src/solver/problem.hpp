@@ -12,6 +12,7 @@ public:
 
 	virtual Domain * getBestDomain();
 	virtual void applyConstraint(int id);
+	virtual void backtrack(int id);
 
 	int getN();
 	Domain ** getDomains();

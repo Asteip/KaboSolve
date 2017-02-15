@@ -37,6 +37,12 @@ void Problem::applyConstraint(int id){
 	}
 }
 
+void Problem::backtrack(int id){
+	for(int i = 0 ; i < _n < ++i){
+		_domains[i]->backtrack(int id);
+	}
+}
+
 int Problem::getN(){
 	return _n;
 }
