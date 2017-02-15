@@ -1,9 +1,15 @@
 #include "pNQueen.hpp"
-#include "../constraint.hpp"
-#include "../constraints/cNQueen.hpp"
-#include "../constraints/cAllDiff.hpp"
+
+PNQueen::PNQueen(int n){
+	_n = n;
+	generateProblem();
+}
+
+PNQueen::~PNQueen() {}
 
 void PNQueen::generateProblem() {
+
+	// Create the domains
 	_domains = new Domain * [_n];
 	int *line;
 
@@ -22,12 +28,3 @@ void PNQueen::generateProblem() {
 	_constraints[0] = new CNQueen(_domains, _n);
 	_constraints[1] = new CAllDiff(_domains, _n);
 }
-
-PNQueen::PNQueen(int n){
-
-	// Create the domains
-	_n = n;
-	generateProblem();
-}
-
-PNQueen::~PNQueen() {}

@@ -11,9 +11,10 @@ public:
 	virtual ~Problem();
 
 	virtual Domain * getBestDomain();
+	virtual void applyConstraint(int id);
 
 	int getN();
-	virtual Domain ** getDomains();
+	Domain ** getDomains();
 	int getM();
 	Constraint ** getConstraints();
 
