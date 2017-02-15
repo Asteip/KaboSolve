@@ -11,7 +11,7 @@ Solver::Solver (Problem *p) {
 }
 
 void Solver::solve() {
-
+	
 }
 
 // void Solver::solve() {

@@ -13,7 +13,7 @@ public:
 	Domain * getMinDomain();
 
 	int getN();
-	Domain ** getDomains();
+	virtual Domain ** getDomains();
 	int getM();
 	Constraint ** getConstraints();
 
