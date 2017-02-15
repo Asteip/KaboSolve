@@ -20,11 +20,11 @@ void Solver::solve() {
 
 
 	Domain **dAffich = _p->getDomains();
-	/*for (int k = 0; k < _n; ++k) {
- 		cout << k << ": ";
+	for (int k = 0; k < _n; ++k) {
+ 		cout << k << ":\t";
  		dAffich[k]->affichageNQueen();
  	}
- 	cout << endl;*/
+ 	cout << endl;
 
 
 
@@ -71,17 +71,17 @@ void Solver::solve() {
 
 
 
-		/*for (int k = 0; k < _n; ++k) {
-	 		cout << k << ": ";
+		for (int k = 0; k < _n; ++k) {
+	 		cout << k << ":\t";
 	 		dAffich[k]->affichageNQueen();
  		}
- 		cout << endl;*/
+ 		cout << endl;
 	}
 
 
 
 	for (int k = 0; k < _n; ++k) {
- 		cout << k << ": ";
+ 		cout << k << ":\t";
  		dAffich[k]->affichageResultatNQueen();
  	}
 }
