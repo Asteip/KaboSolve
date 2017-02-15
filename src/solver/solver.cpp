@@ -18,7 +18,7 @@ void Solver::solve() {
 	Domain *d;
 
 	while ((i >= 0) && (i < _n)) {
-		d = _p->getMinDomain();
+		d = _p->getBestDomain();
 	}
 }
 
