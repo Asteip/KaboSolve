@@ -22,10 +22,10 @@ void Solver::solve() {
 	Domain *d;
 	int id;
 
-	for (int k = 0; k < _n; ++k) {
+	/*for (int k = 0; k < _n; ++k) {
 		cout << k << ": ";
 		_domains[k]->affichageNQueen();
-	}
+	}*/
 
 
 
@@ -38,33 +38,77 @@ void Solver::solve() {
 
 
 	while ((i >= 0) && (i < _n)) {
+//														cout << endl << "NOUVELLE ITERATION : " << i << endl;
 		d = _domains[i];
 		id = d->getId();
 
 		if (d->getIsSet()) {
-														cout << i << " is set" << endl;
+//														cout << "is already set" << endl;
+//														cout << "on backtrack" << endl;
 			for (j = i+1; j < _n; ++j) {
+//				cout << "j=" << j << endl;
+//				cout << "id=" << id << endl;
 				_domains[j]->backtrack(id);
 			}
-			if (d->getSize() > 0) {
+/*														for (int k = 0; k < _n; ++k) {
+															cout << k << ": ";
+															_domains[k]->affichageNQueen();
+														}
+*/			if (d->getSize() > 0) {
 				d->fixer();
-														cout << i << " est fixé à " << d->getValue() << endl;
-				_constraints[0]->applyConstraint(id);
-				_constraints[1]->applyConstraint(id);
-				++i;
-			} else {									cout << i << " est vide" << endl;
-				d->reset();
-				--i;
+/*														cout << "est fixé à " << d->getValue() << endl;
+														for (int k = 0; k < _n; ++k) {
+															cout << k << ": ";
+															_domains[k]->affichageNQueen();
+														}
+
+														cout << "on applique la première contrainte" << endl;
+*/				_constraints[0]->applyConstraint(id);
+/*														for (int k = 0; k < _n; ++k) {
+															cout << k << ": ";
+															_domains[k]->affichageNQueen();
+														}
+														cout << "on applique la seconde contrainte" << endl;
+*/				_constraints[1]->applyConstraint(id);
+/*														for (int k = 0; k < _n; ++k) {
+															cout << k << ": ";
+															_domains[k]->affichageNQueen();
+														}
+*/				++i;
+			} else {
+/*														cout << "le domaine est vide" << endl;
+														cout << "on reset le domaine" << endl;
+*/				d->reset();
+/*														for (int k = 0; k < _n; ++k) {
+															cout << k << ": ";
+															_domains[k]->affichageNQueen();
+														}
+*/				--i;
 			}
 		} else {
+//														cout << "isn't set" << endl;
 			if (d->getSize() > 0) {
 				d->fixer();
-														cout << i << " est fixé à " << d->getValue() << endl;
-				_constraints[0]->applyConstraint(id);
-				_constraints[1]->applyConstraint(id);
-				++i;
+/*														cout << "est fixé à " << d->getValue() << endl;
+														for (int k = 0; k < _n; ++k) {
+															cout << k << ": ";
+															_domains[k]->affichageNQueen();
+														}
+														cout << "on applique la première contrainte" << endl;
+*/				_constraints[0]->applyConstraint(id);
+/*														for (int k = 0; k < _n; ++k) {
+															cout << k << ": ";
+															_domains[k]->affichageNQueen();
+														}
+														cout << "on applique la seconde contrainte" << endl;
+*/				_constraints[1]->applyConstraint(id);
+/*														for (int k = 0; k < _n; ++k) {
+															cout << k << ": ";
+															_domains[k]->affichageNQueen();
+														}
+*/				++i;
 			} else {
-														cout << i << " est vide" << endl;
+//														cout << "le domaine est vide" << endl;
 				--i;
 			}
 		}
@@ -87,17 +131,27 @@ void Solver::solve() {
 
 
 
-		for (int k = 0; k < _n; ++k) {
+		/*for (int k = 0; k < _n; ++k) {
 			cout << k << ": ";
 			_domains[k]->affichageNQueen();
-		}
+		}*/
 	}
 
 
 
 	if (i > 0) {
-		for (i = 0; i < _n; ++i) {
-			cout << i << ": " << _domains[i]->getValue() << endl;
+		cout << endl << endl;
+		/*for (int k = 0; k < _n; ++k) {
+			cout << k << ": ";
+			_domains[k]->affichageNQueen();
+		}*/
+		/*	cout << endl << endl;
+			for (int k = 0; k < _n; ++k) {
+				cout << k << ": " << _domains[k]->getValue() << endl;
+			}*/
+		for (int k = 0; k < _n; ++k) {
+			cout << k << ":\t";
+			_domains[k]->affichageResultatNQueen();
 		}
 	} else {
 		cout << "PAS DE SOLUTION" << endl;

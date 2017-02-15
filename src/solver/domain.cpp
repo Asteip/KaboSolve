@@ -161,20 +161,53 @@ void Domain::prunerInf(int id, int val) {
 
 // BACKTRACK
 void Domain::backtrack(int id) {
-	/*for (int l = 0; l < nbPruned; ++l) {
-		cout << indexes[l] << "|";
+	/*cout << "AVANT" << endl;
+	cout << "size=" << size << endl;
+	cout << "nbPruned=" << nbPruned << endl;
+	cout << "possibles :" << endl;
+	for (int l = 0; l < size; ++l) {
+		cout << possibles[l] << "|";
+	}
+	cout << endl << "pruned :" << endl;
+	for (int l = 0; l < nbPruned; ++l) {
+		cout << pruned[l] << "|";
 	}*/
-	cout << endl;
+
+
+
+
+
+
 	int i, ind;
-	while (indexes[nbPruned-1] == id) {
+	while ((nbPruned > 0) && (indexes[nbPruned-1] == id)) {
 		--nbPruned;
 		ind = posValSupOuEgale(pruned[nbPruned]);
 		for (i = size; i > ind; --i) {
 			possibles[i] = possibles[i-1];
 		}
-		possibles[i] = pruned[nbPruned];
+		possibles[ind] = pruned[nbPruned];
 		++size;
 	}
+
+
+
+
+
+
+
+
+
+	/*cout << endl << "APRES" << endl;
+	cout << "size=" << size << endl;
+	cout << "nbPruned=" << nbPruned << endl;
+	cout << "possibles :" << endl;
+	for (int l = 0; l < size; ++l) {
+		cout << possibles[l] << "|";
+	}
+	cout << endl << "pruned :" << endl;
+	for (int l = 0; l < nbPruned; ++l) {
+		cout << pruned[l] << "|";
+	}*/
 }
 
 void Domain::reset() {
@@ -265,6 +298,20 @@ void Domain::affichageNQueen() {
 			} else {
 				cout << "X ";
 			}
+		}
+	}
+	cout << endl;
+}
+
+void Domain::affichageResultatNQueen() {
+	int j = 0;
+	assert(isSet);
+	for (int i = 0; i < n; ++i) {
+		if (i == getValue()) {
+			cout << "O ";
+		} else {
+			cout << "_ ";
+			++j;
 		}
 	}
 	cout << endl;

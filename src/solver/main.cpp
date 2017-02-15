@@ -64,7 +64,8 @@ int main(int argc, char **argv){
 
 		////// NQUEEN
 
-	int n = 4;
+	clock_t debut, fin;
+	int n = 30;
 	int *set;
 
 	Domain **d = new Domain * [n];
@@ -86,7 +87,12 @@ int main(int argc, char **argv){
 	}*/
 
 	Solver s(d, n, c, 2);
+
+	debut = clock();
 	s.solve();
+	fin = clock();
+
+	cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 
 	return 0;
 }

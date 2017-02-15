@@ -13,7 +13,7 @@ CNQueen::~CNQueen() {}
 // id = ligne où l'on veut savoir l'emplacement de la reine
 // id E {0,...,size-1}
 void CNQueen::applyConstraint(int id) {
-	cout << "id=" << id << endl;
+	//cout << "id=" << id << endl;
 	int val = _domains[id]->getValue();
 
 	for (int i = 0; i < _size; ++i) {
