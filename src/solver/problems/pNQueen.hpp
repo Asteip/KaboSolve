@@ -9,8 +9,6 @@ public:
 	PNQueen(int n);
 	~PNQueen();
 
-	Domain * getMinDomain();
-
 private:
 	void generateProblem();
 };

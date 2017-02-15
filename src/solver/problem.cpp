@@ -15,6 +15,22 @@ Problem::~Problem(){
 	delete _constraints;
 }
 
+Domain *Problem::getBestDomain() {
+	Domain * res = _domains[0];
+	int i = 1;
+	int min = res->getSize();
+
+	while ((min > 0) && (i < _n)) {
+		if (_domains[i]->getSize() < min) {
+			res = _domains[i];
+			min = res->getSize();
+		}
+		++i;
+	}
+
+	return res;
+}
+
 int Problem::getN(){
 	return _n;
 }

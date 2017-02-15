@@ -10,7 +10,7 @@ public:
 	Problem();
 	virtual ~Problem();
 
-	Domain * getMinDomain();
+	virtual Domain * getBestDomain();
 
 	int getN();
 	virtual Domain ** getDomains();

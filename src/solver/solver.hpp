@@ -14,10 +14,9 @@ public:
 	void solve();
 
 private:
+	Problem *_p;
 	int _n;
-	int _m;
 	Domain **_domains;
-	Constraint **_constraints;
 };
 
 #endif
