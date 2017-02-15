@@ -20,11 +20,11 @@ void Solver::solve() {
 
 
 	Domain **dAffich = _p->getDomains();
-	for (int k = 0; k < _n; ++k) {
+	/*for (int k = 0; k < _n; ++k) {
  		cout << k << ":\t";
  		dAffich[k]->affichageNQueen();
  	}
- 	cout << endl;
+ 	cout << endl;*/
 
 
 
@@ -43,7 +43,7 @@ void Solver::solve() {
 			} else {
 				d->reset();
 				--i;
-				if (i > 0) {
+				if (i >= 0) {
 					d = _domains[i];
 					id = d->getId();
 				}
@@ -60,7 +60,7 @@ void Solver::solve() {
 				}
 			} else {
 				--i;
-				if (i > 0) {
+				if (i >= 0) {
 					d = _domains[i];
 					id = d->getId();
 				}
@@ -70,18 +70,21 @@ void Solver::solve() {
 
 
 
-
-		for (int k = 0; k < _n; ++k) {
+		/*for (int k = 0; k < _n; ++k) {
 	 		cout << k << ":\t";
 	 		dAffich[k]->affichageNQueen();
  		}
- 		cout << endl;
+ 		cout << endl;*/
 	}
 
 
 
-	for (int k = 0; k < _n; ++k) {
- 		cout << k << ":\t";
- 		dAffich[k]->affichageResultatNQueen();
+	if (i > 0) {
+		for (int k = 0; k < _n; ++k) {
+ 			cout << k << ":\t";
+ 			dAffich[k]->affichageResultatNQueen();
+ 		}
+ 	} else {
+ 		cout << "Pas de solution" << endl;
  	}
 }
