@@ -5,11 +5,12 @@
 #include "constraint.hpp"
 #include "constraints/cAllDiff.hpp"
 #include "constraints/cNQueen.hpp"
+#include "problem.hpp"
 
 class Solver{
 
 public:
-	Solver (Domain **domains, int n, Constraint **constraints, int m);
+	Solver (Problem *p);
 	void solve();
 
 private:

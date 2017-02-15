@@ -3,14 +3,16 @@
 
 #include "../problem.hpp"
 
-class PNQueen : public Problem{
+class PNQueen : public Problem {
 
 public:
 	PNQueen(int n);
 	~PNQueen();
 
-	virtual Domain * getMinDomain();
+	Domain * getMinDomain();
 
+private:
+	void generateProblem();
 };
 
 #endif

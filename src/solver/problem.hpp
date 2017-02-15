@@ -10,12 +10,15 @@ public:
 	Problem();
 	virtual ~Problem();
 
-	virtual Domain * getMinDomain() = 0;
+	Domain * getMinDomain();
 
-	virtual int getN();
-	virtual Domain ** getDomains();
-	virtual int getM();
-	virtual Constraint ** getConstraints();
+	int getN();
+	Domain ** getDomains();
+	int getM();
+	Constraint ** getConstraints();
+
+protected:
+	virtual void generateProblem() = 0;
 
 protected:
 	int _n;

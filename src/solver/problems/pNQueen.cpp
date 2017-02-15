@@ -1,9 +1,6 @@
 #include "pNQueen.hpp"
 
-PNQueen::PNQueen(int n){
-
-	// Create the domains
-	_n = n;
+void PNQueen::generateProblem() {
 	_domains = new Domain * [_n];
 
 	for (int i = 0 ; i < _n ; ++i){
@@ -16,20 +13,32 @@ PNQueen::PNQueen(int n){
 
 	// Create the constraints
 	_m = 2;
-	_constraints = new Constraint * [_m];
+	_constraints = new Constraint * [2];
 
 	_constraints[0] = new cNQueen(_domains, _n);
 	_constraints[1] = new cAllDiff(_domains, _n);
 }
 
-PNQueen::~PNQueen(){}
+PNQueen::PNQueen(int n){
+
+	// Create the domains
+	_n = n;
+	generateProblem();
+}
+
+PNQueen::~PNQueen() {}
 
 Domains * PNQueen::getMinDomain(){
 	Domain * res = _domains[0];
+	int i = 1;
+	int min = res->getSize();
 
-	for(int i = 1 ; i < _n ; ++i){
-		if(_domains[i]->getSize() < res->getSize()) res = _domains[i];
-		if(res->getSize() == 0) break;
+	while ((min > 0) && (i < _n)) {
+		if (_domains[i]->getSize() < min) {
+			res = _domains[i];
+			min = res->getSize();
+		}
+		++i;
 	}
 
 	return res;

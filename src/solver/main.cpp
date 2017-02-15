@@ -1,4 +1,5 @@
 #include "solver.hpp"
+#include "problem.hpp"
 #include "problems/pNQueen.hpp"
 #include "domain.hpp"
 #include "constraint.hpp"
@@ -17,82 +18,46 @@ int main(int argc, char **argv){
 	//srand(time(NULL));
 	srand(0);
 
+	cout << "Problème du N-reines" << endl;
 	cout << "Démarrage du solver..." << endl << endl;
-	
-	/*Domain **d = new Domain * [5];
-	int taille;
-	int **coco = new int * [5];
-	for (int i = 0; i < 5; ++i) {
-		taille = 3 + rand() % 7;
-		coco[i] = new int [taille];
-		for (int j = 0; j < taille; ++j) {
-			//coco[i][j] = rand() % 100;
-			coco[i][j] = j;
-		}
-		d[i] = new Domain(i, taille, coco[i]);
-	}
 
+	int N = 5;
+	Problem *p = new PNQueen(N);
 
-	cout << "ENSEMBLES DE DEPART" << endl;
-	for (int j = 0; j < 5; ++j) {
-		d[j]->affichage();
-	}
-
-	int *toto = new int [5];
-	for (int i = 0; i < 5; ++i) {
-		toto[i] = 1 + rand() % 3;
-	}
-
-	//Constraint * c = new CInfOrEqual(toto, 150, d, 5);
-	Constraint * c = new CNQueen(d, 5);
-	Constraint * cdiff = new CAllDiff(d, 5);
-
-	cout << endl << endl << "CONTRAINTE" << endl;
-	c->display();
-
-	cout << endl << "PRUNAGE" << endl;
-	d[0]->fixer();
-	c->applyConstraint(0);
-	cdiff->applyConstraint(0);
-
-	cout << endl << "ENSEMBLES APRES PRUNAGE" << endl;
-	for (int j = 0; j < 5; ++j) {
-		d[j]->affichage();
-	}*/
 
 
 
 		////// NQUEEN
 
-	clock_t debut, fin;
-	int n = 30;
-	int *set;
+	// clock_t debut, fin;
+	// int n = 30;
+	// int *set;
 
-	Domain **d = new Domain * [n];
-	Constraint **c = new Constraint * [2];
+	// Domain **d = new Domain * [n];
+	// Constraint **c = new Constraint * [2];
 
-	for (int i = 0; i < n; ++i) {
-		set = new int [n];
-		for (int j = 0; j < n; ++j) {
-			set[j] = j;
-		}
-		d[i] = new Domain(i, n, set);
-	}
+	// for (int i = 0; i < n; ++i) {
+	// 	set = new int [n];
+	// 	for (int j = 0; j < n; ++j) {
+	// 		set[j] = j;
+	// 	}
+	// 	d[i] = new Domain(i, n, set);
+	// }
 
-	c[0] = new CAllDiff(d, n);
-	c[1] = new CNQueen(d, n);
+	// c[0] = new CAllDiff(d, n);
+	// c[1] = new CNQueen(d, n);
 
-	/*for (int i = 0; i < n; ++i) {
-		d[i]->affichage();
-	}*/
+	// /*for (int i = 0; i < n; ++i) {
+	// 	d[i]->affichage();
+	// }*/
 
-	Solver s(d, n, c, 2);
+	// Solver s(d, n, c, 2);
 
-	debut = clock();
-	s.solve();
-	fin = clock();
+	// debut = clock();
+	// s.solve();
+	// fin = clock();
 
-	cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
+	// cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 
 	return 0;
 }
