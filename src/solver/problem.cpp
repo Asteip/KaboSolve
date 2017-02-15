@@ -1,5 +1,9 @@
 #include "problem.hpp"
 
+#include <iostream>
+
+using namespace std;
+
 Problem::Problem(){}
 
 Problem::~Problem(){
@@ -17,11 +21,18 @@ Problem::~Problem(){
 
 Domain *Problem::getBestDomain() {
 	Domain * res = _domains[0];
-	int i = 1;
-	int min = res->getSize();
+	int i = 0;
+	int min;
+
+	while (_domains[i]->getIsSet()) {
+		++i;
+	}
+
+	res = _domains[i];
+	min = res->getSize();
 
 	while ((min > 0) && (i < _n)) {
-		if (_domains[i]->getSize() < min) {
+		if ((!_domains[i]->getIsSet()) && (_domains[i]->getSize() < min)) {
 			res = _domains[i];
 			min = res->getSize();
 		}

@@ -316,3 +316,9 @@ void Domain::affichageResultatNQueen() {
 	}
 	cout << endl;
 }
+
+
+
+void Domain::setId(int id) {
+	this->id = id;
+}

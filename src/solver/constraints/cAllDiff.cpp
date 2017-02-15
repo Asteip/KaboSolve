@@ -11,12 +11,8 @@ CAllDiff::~CAllDiff(){
 
 void CAllDiff::applyConstraint(int id) {
 	int t;
-	int i = 0;
 
-	while (_domains[i]->getId() != id) {
-		++i;
-	}
-	t = _domains[i]->getValue();
+	t = _domains[id]->getValue();
 
 	for (int i = 0 ; i < _size ; ++i) {
 		//cout << "i=" << i << endl;

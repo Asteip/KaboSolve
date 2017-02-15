@@ -87,6 +87,10 @@ class Domain {
 		void affichage();
 		void affichageNQueen();
 		void affichageResultatNQueen();
+
+
+
+		void setId(int id);
 };
 
 #endif

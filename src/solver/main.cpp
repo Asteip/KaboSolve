@@ -15,49 +15,22 @@
 using namespace std;
 
 int main(int argc, char **argv){
-	//srand(time(NULL));
-	srand(0);
+	srand(time(NULL));
+	//srand(0);
+	clock_t debut, fin;
 
 	cout << "Problème du N-reines" << endl;
 	cout << "Démarrage du solver..." << endl << endl;
 
-	int N = 5;
+	int N = 20;
 	Problem *p = new PNQueen(N);
+	Solver s(p);
 
+	debut = clock();
+	s.solve();
+	fin = clock();
 
-
-
-		////// NQUEEN
-
-	// clock_t debut, fin;
-	// int n = 30;
-	// int *set;
-
-	// Domain **d = new Domain * [n];
-	// Constraint **c = new Constraint * [2];
-
-	// for (int i = 0; i < n; ++i) {
-	// 	set = new int [n];
-	// 	for (int j = 0; j < n; ++j) {
-	// 		set[j] = j;
-	// 	}
-	// 	d[i] = new Domain(i, n, set);
-	// }
-
-	// c[0] = new CAllDiff(d, n);
-	// c[1] = new CNQueen(d, n);
-
-	// /*for (int i = 0; i < n; ++i) {
-	// 	d[i]->affichage();
-	// }*/
-
-	// Solver s(d, n, c, 2);
-
-	// debut = clock();
-	// s.solve();
-	// fin = clock();
-
-	// cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
+	cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 
 	return 0;
 }
