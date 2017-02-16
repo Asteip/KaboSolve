@@ -12,6 +12,7 @@ class Solver{
 public:
 	Solver (Problem *p);
 	void solve();
+	void solveAll();
 
 private:
 	Problem *_p;
