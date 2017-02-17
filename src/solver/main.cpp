@@ -22,7 +22,7 @@ int main(int argc, char **argv){
 	cout << "Problème du N-reines" << endl;
 	cout << "Démarrage du solver..." << endl << endl;
 
-	int N = 7;
+	int N = 14;
 	Problem *p = new PNQueen(N);
 	Solver s(p);
 

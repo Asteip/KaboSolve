@@ -5,6 +5,8 @@
 #include <ctime>
 #include <cstdio>
 #include <cstdlib>
+#include <stdio.h>
+#include <string.h>
 
 using namespace std;
 
@@ -125,6 +127,7 @@ void Domain::prunerValeur(int id, int val) {
 			for (int i = ind; i < size; ++i) {
 				possibles[i] = possibles[i+1];
 			}
+			//memmove(possibles+ind, possibles+ind+1, (size-ind)*sizeof(int));
 		}
 	}
 }
@@ -185,6 +188,7 @@ void Domain::backtrack(int id) {
 		for (i = size; i > ind; --i) {
 			possibles[i] = possibles[i-1];
 		}
+		//memmove(possibles+ind+1, possibles+ind, (size-ind)*sizeof(int));
 		possibles[ind] = pruned[nbPruned];
 		++size;
 	}
