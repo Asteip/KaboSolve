@@ -29,7 +29,7 @@ void CSupOrEqual::applyConstraint(int id){
 			td = t;
 			t /= _coefficients[i];
 			td /= _coefficients[i];
-			std::cout << "t=" << t << std::endl;
+			//std::cout << "t=" << t << std::endl;
 
 			if (t == td) {
 				_domains[i]->prunerInf(id, t);

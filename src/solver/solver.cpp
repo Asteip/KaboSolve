@@ -30,7 +30,7 @@ void Solver::solve() {
  	cout << endl;*/
 
 
- 	//while (chercher) {
+ 	while (chercher) {
 		while ((i != -1) && (i < _n)) {
 			if (d->getIsSet()) {
 				_p->backtrack(id);
@@ -68,23 +68,30 @@ void Solver::solve() {
 					}
 				}
 			}
-		//}
-			cout << "COCO" << endl;
+		}
 
 		if (i != -1) {
-			/*for (int k = 0; k < _n; ++k) {
-	 			cout << k << ":\t";
-	 			dAffich[k]->affichageResultatNQueen();
-	 		}
+			for (int k = 0; k < _n; ++k) {
+ 				cout << k << ":\t";
+ 				dAffich[k]->affichageResultatNQueen();
+ 			}
+
+
+ 			/*for (int k = 0; k < _n; ++k) {
+	 			cout << k << ": " << _domains[k]->getValue() << endl;
+	 		}*/
+
+
+ 			cout << endl;
 	 		cout << endl << "Trouver une autre solution ? o/n : ";
 	 		cin >> entree;
 	 		chercher = ((entree == "o") || (entree == "O"));
-	 		--i;*/
+	 		--i;
 
 
-	 		for (int k = 0; k < _n; ++k) {
-	 			cout << k << ": " << _domains[i] << endl;
-	 		}
+	 		/*for (int k = 0; k < _n; ++k) {
+	 			cout << k << ": " << _domains[k]->getValue() << endl;
+	 		}*/
 	 	} else {
 	 		cout << "Pas de solution" << endl;
 	 		chercher = false;
