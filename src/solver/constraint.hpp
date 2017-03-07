@@ -6,7 +6,7 @@
 
 /*!
  * \brief Represent a constraint of a constraint satisfaction problem.
- * \details This class represent a sum constraint of a satisfaction problem,
+ * \details This class represents a sum constraint of a satisfaction problem,
  * it can be an equal, a different or an inequality constraint.
  */
 class Constraint {

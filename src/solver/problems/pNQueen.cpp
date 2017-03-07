@@ -8,7 +8,6 @@ PNQueen::PNQueen(int n){
 PNQueen::~PNQueen() {}
 
 void PNQueen::generateProblem() {
-
 	// Create the domains
 	_domains = new Domain * [_n];
 	int *line;

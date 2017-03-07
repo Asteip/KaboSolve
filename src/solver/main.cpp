@@ -1,6 +1,7 @@
 #include "solver.hpp"
 #include "problem.hpp"
 #include "problems/pNQueen.hpp"
+#include "problems/pMoreMoney.hpp"
 #include "domain.hpp"
 #include "constraint.hpp"
 #include "constraints/cInfOrEqual.hpp"
@@ -22,8 +23,10 @@ int main(int argc, char **argv){
 	cout << "Problème du N-reines" << endl;
 	cout << "Démarrage du solver..." << endl << endl;
 
-	int N = 14;
-	Problem *p = new PNQueen(N);
+	/*int N = 5000;
+	Problem *p = new PNQueen(N);*/
+
+	Problem *p = new PMoreMoney();
 	Solver s(p);
 
 	debut = clock();

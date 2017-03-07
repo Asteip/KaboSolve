@@ -30,7 +30,7 @@ void Solver::solve() {
  	cout << endl;*/
 
 
- 	while (chercher) {
+ 	//while (chercher) {
 		while ((i != -1) && (i < _n)) {
 			if (d->getIsSet()) {
 				_p->backtrack(id);
@@ -68,17 +68,17 @@ void Solver::solve() {
 					}
 				}
 			}
-		}
+		//}
 
 		if (i != -1) {
-			for (int k = 0; k < _n; ++k) {
+			/*for (int k = 0; k < _n; ++k) {
 	 			cout << k << ":\t";
 	 			dAffich[k]->affichageResultatNQueen();
 	 		}
 	 		cout << endl << "Trouver une autre solution ? o/n : ";
 	 		cin >> entree;
 	 		chercher = ((entree == "o") || (entree == "O"));
-	 		--i;
+	 		--i;*/
 	 	} else {
 	 		cout << "Pas de solution" << endl;
 	 		chercher = false;
@@ -135,11 +135,11 @@ void Solver::solveAll() {
 		}
 
 		if (i != -1) {
-			for (int k = 0; k < _n; ++k) {
+			/*for (int k = 0; k < _n; ++k) {
 				cout << k << ":\t";
 				dAffich[k]->affichageResultatNQueen();
 			}
-			cout << endl;
+			cout << endl;*/
 			--i;
 		} else {
 			cout << "Pas de solution" << endl;

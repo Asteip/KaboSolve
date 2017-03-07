@@ -8,12 +8,12 @@
 
 class PNQueen : public Problem {
 
-public:
-	PNQueen(int n);
-	~PNQueen();
+	public:
+		PNQueen(int n);
+		~PNQueen();
 
-private:
-	void generateProblem();
+	private:
+		void generateProblem();
 };
 
 #endif
