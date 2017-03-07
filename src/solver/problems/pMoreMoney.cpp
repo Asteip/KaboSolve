@@ -45,8 +45,8 @@ void PMoreMoney::generateProblem() {
 	lDom[1] = _domains[1];
 	lDom[2] = _domains[7];
 	lDom[3] = _domains[8];
-	_constraints[0] = new cSupOrEqual(liste, 0, lDom, 4);
-	_constraints[1] = new cInfOrEqual(liste, 0, lDom, 4);
+	_constraints[0] = new CSupOrEqual(liste, 0, lDom, 4);
+	_constraints[1] = new CInfOrEqual(liste, 0, lDom, 4);
 
 	// N+R = E
 	// x2 + x6 -x1 -10*x9 = 0
@@ -60,6 +60,6 @@ void PMoreMoney::generateProblem() {
 	lDom[1] = _domains[6];
 	lDom[2] = _domains[1];
 	lDom[3] = _domains[8];
-	_constraints[2] = new cSupOrEqual(liste, 0, lDom, 4);
-	_constraints[3] = new cInfOrEqual(liste, 0, lDom, 4);
+	_constraints[2] = new CSupOrEqual(liste, 0, lDom, 4);
+	_constraints[3] = new CInfOrEqual(liste, 0, lDom, 4);
 }

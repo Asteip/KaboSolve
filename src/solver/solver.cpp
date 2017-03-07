@@ -69,6 +69,7 @@ void Solver::solve() {
 				}
 			}
 		//}
+			cout << "COCO" << endl;
 
 		if (i != -1) {
 			/*for (int k = 0; k < _n; ++k) {
@@ -79,6 +80,11 @@ void Solver::solve() {
 	 		cin >> entree;
 	 		chercher = ((entree == "o") || (entree == "O"));
 	 		--i;*/
+
+
+	 		for (int k = 0; k < _n; ++k) {
+	 			cout << k << ": " << _domains[i] << endl;
+	 		}
 	 	} else {
 	 		cout << "Pas de solution" << endl;
 	 		chercher = false;
