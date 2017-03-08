@@ -24,9 +24,9 @@ int main(int argc, char **argv) {
 	cout << "Démarrage du solver..." << endl << endl;
 
 	int N = 5;
-	Problem *p = new PNQueen(N);
+	//Problem *p = new PNQueen(N);
 
-	//Problem *p = new PMoreMoney();
+	Problem *p = new PMoreMoney();
 	Solver s(p);
 
 	debut = clock();

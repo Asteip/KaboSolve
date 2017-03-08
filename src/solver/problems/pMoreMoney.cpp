@@ -20,13 +20,13 @@ void PMoreMoney::generateProblem() {
 	int *liste;
 	Domain ** lDom;
 	_domains = new Domain * [13];
-	_n = 12;
+	_n = 13;
 	_m = 8;
 
 	for (i = 0; i < 8; ++i) {
 		liste = new int[9];
-		for (j = 1; j < 10; ++j) {
-			liste[j] = j;
+		for (j = 0; j < 9; ++j) {
+			liste[j] = j+1;
 		}
 		_domains[i] = new Domain(i, 9, liste);
 	}
@@ -110,6 +110,13 @@ void PMoreMoney::generateProblem() {
 	_constraints[8] = new CSupOrEqual(liste, 0, lDom, 2);
 	_constraints[9] = new CInfOrEqual(liste, 0, lDom, 2);
 
+
+
+
+	/*for (int k = 0; k < _n; ++k) {
+		_domains[k]->affichage();
+		cout << endl << endl;
+	 }*/
 
 // 	SEND
 // 	MORE

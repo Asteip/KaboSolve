@@ -23,15 +23,18 @@ void Solver::solve() {
 
 
 	Domain **dAffich = _p->getDomains();
-	/*for (int k = 0; k < _n; ++k) {
+	for (int k = 0; k < _n; ++k) {
  		cout << k << ":\t";
- 		dAffich[k]->affichageNQueen();
+ 		dAffich[k]->affichage();
+ 		//dAffich[k]->affichageNQueen();
  	}
- 	cout << endl;*/
+ 	cout << endl;
 
 
  	while (chercher) {
 		while ((i != -1) && (i < _n)) {
+			cout << "i=" << i << endl;
+			cout << "id=" << d->getId() << endl;
 			if (d->getIsSet()) {
 				_p->backtrack(id);
 				if (d->getSize() > 0) {
@@ -70,16 +73,26 @@ void Solver::solve() {
 			}
 		}
 
+		//for (int k = 0; k < _n; ++k) {
+		//	dAffich[k]->affichage();
+		//	cout << endl << endl;
+			/*if (dAffich[k]->getIsSet()) {
+	 			cout << k << ": " << dAffich[k]->getValue() << endl;
+	 		} else {
+	 			cout << k << ": X" << endl;
+	 		}*/
+	 	//}
+
 		if (i != -1) {
-			for (int k = 0; k < _n; ++k) {
+			/*for (int k = 0; k < _n; ++k) {
  				cout << k << ":\t";
  				dAffich[k]->affichageResultatNQueen();
- 			}
+ 			}*/
 
 
- 			/*for (int k = 0; k < _n; ++k) {
+ 			for (int k = 0; k < _n; ++k) {
 	 			cout << k << ": " << _domains[k]->getValue() << endl;
-	 		}*/
+	 		}
 
 
  			cout << endl;
