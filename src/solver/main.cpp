@@ -30,8 +30,8 @@ int main(int argc, char **argv) {
 	Solver s(p);
 
 	debut = clock();
-	s.solve();
-	//s.solveAll();
+	//s.solve();
+	s.solveAll();
 	//s.test();
 	fin = clock();
 

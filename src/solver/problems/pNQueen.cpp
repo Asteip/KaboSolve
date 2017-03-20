@@ -1,5 +1,7 @@
 #include "pNQueen.hpp"
 
+using namespace std;
+
 PNQueen::PNQueen(int n){
 	_n = n;
 	generateProblem();
@@ -29,7 +31,21 @@ void PNQueen::generateProblem() {
 }
 
 void PNQueen::applyConstraint(int id) {
-	for(int i = 0 ; i < _n ; ++i){
-		_domains[i]->backtrack(id);
+	for(int i = 0 ; i < _m ; ++i){
+		_constraints[i]->applyConstraint(id);
+	}
+}
+
+void PNQueen::afficher() {
+	for (int i = 0; i < _n; ++i) {
+		int k;
+		for (k = 0; k < _domains[i]->getValue(); ++k) {
+			cout << "_ ";
+		}
+		cout << "O ";
+		for (k = k+1; k < _n; ++k) {
+			cout << "_ ";
+		}
+		cout << endl;
 	}
 }

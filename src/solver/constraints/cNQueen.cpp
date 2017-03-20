@@ -18,8 +18,8 @@ bool CNQueen::applyConstraint(int id) {
 
 	for (int i = 0; i < _size; ++i) {
 		if (!_domains[i]->getIsSet()) {
-			modification = modification || _domains[i]->prunerValeur(id, val-id+i);
-			modification = modification || _domains[i]->prunerValeur(id, val-i+id);
+			modification = _domains[i]->prunerValeur(id, val-id+i) || modification;
+			modification = _domains[i]->prunerValeur(id, val-i+id) || modification;
 		}
 	}
 

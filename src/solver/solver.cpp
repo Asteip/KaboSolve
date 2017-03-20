@@ -24,47 +24,8 @@ void Solver::solve() {
 	Domain *d = _p->getBestDomain();
 	id = d->getId();
 
-
-	Domain **dAffich = _p->getDomains();
-	/*for (int k = 0; k < _n; ++k) {
- 		cout << k << ":\t";
- 		dAffich[k]->affichage();
- 		//dAffich[k]->affichageNQueen();
- 	}
- 	cout << endl;*/
-
-
-		cout << "S: "; dAffich[0]->affichageResultatSENDMORY();
-	 	cout << "E: "; dAffich[1]->affichageResultatSENDMORY();
-	 	cout << "N: "; dAffich[2]->affichageResultatSENDMORY();
-	 	cout << "D: "; dAffich[3]->affichageResultatSENDMORY();
-	 	cout << "M: "; dAffich[4]->affichageResultatSENDMORY();
-	 	cout << "O: "; dAffich[5]->affichageResultatSENDMORY();
-	 	cout << "R: "; dAffich[6]->affichageResultatSENDMORY();
-	 	cout << "Y: "; dAffich[7]->affichageResultatSENDMORY();
-	 	cout << "rY: "; dAffich[8]->affichageResultatSENDMORY();
-	 	cout << "rE: "; dAffich[9]->affichageResultatSENDMORY();
-	 	cout << "rN: "; dAffich[10]->affichageResultatSENDMORY();
-	 	cout << "rO: "; dAffich[11]->affichageResultatSENDMORY();
-
-
-	 	cout << endl << endl << endl;
-
-
-
  	while (chercher) {
 		while ((i != -1) && (i < _n)) {
-			//cout << "\n////////////////////////////////////////////////////////////" << endl << endl << endl << endl;
-
-			/*for (int k = 0; k < _n; ++k) {
-		 		cout << k << ":\t";
-		 		dAffich[k]->affichage();
-		 		//dAffich[k]->affichageNQueen();
-		 	}
-		 	cout << endl;
-
-		 	cout << "i=" << i << endl;
-			cout << "id=" << d->getId() << endl;*/
 			if (d->getIsSet()) {
 				_p->backtrack(id);
 				if (d->getSize() > 0) {
@@ -101,96 +62,15 @@ void Solver::solve() {
 					}
 				}
 			}
-
-
-		cout << "S: "; dAffich[0]->affichageResultatSENDMORY();
-	 	cout << "E: "; dAffich[1]->affichageResultatSENDMORY();
-	 	cout << "N: "; dAffich[2]->affichageResultatSENDMORY();
-	 	cout << "D: "; dAffich[3]->affichageResultatSENDMORY();
-	 	cout << "M: "; dAffich[4]->affichageResultatSENDMORY();
-	 	cout << "O: "; dAffich[5]->affichageResultatSENDMORY();
-	 	cout << "R: "; dAffich[6]->affichageResultatSENDMORY();
-	 	cout << "Y: "; dAffich[7]->affichageResultatSENDMORY();
-	 	cout << "rY: "; dAffich[8]->affichageResultatSENDMORY();
-	 	cout << "rE: "; dAffich[9]->affichageResultatSENDMORY();
-	 	cout << "rN: "; dAffich[10]->affichageResultatSENDMORY();
-	 	cout << "rO: "; dAffich[11]->affichageResultatSENDMORY();
-
-
-	 	cout << endl << endl << endl;
-
 		}
 
-		//for (int k = 0; k < _n; ++k) {
-		//	dAffich[k]->affichage();
-		//	cout << endl << endl;
-			/*if (dAffich[k]->getIsSet()) {
-	 			cout << k << ": " << dAffich[k]->getValue() << endl;
-	 		} else {
-	 			cout << k << ": X" << endl;
-	 		}*/
-	 	//}
-
 		if (i != -1) {
-			/*for (int k = 0; k < _n; ++k) {
- 				cout << k << ":\t";
- 				dAffich[k]->affichageResultatNQueen();
- 			}*/
-
-
- 			cout << " "
- 			<< dAffich[11]->getValue()
- 			<< dAffich[10]->getValue()
- 			<< dAffich[9]->getValue()
- 			<< dAffich[8]->getValue()
- 			<< endl;
-
- 			cout << "  "
- 			<< dAffich[0]->getValue()
- 			<< dAffich[1]->getValue()
- 			<< dAffich[2]->getValue()
- 			<< dAffich[3]->getValue()
- 			<< "  SEND"
- 			<< endl;
-
- 			cout << "+ "
- 			<< dAffich[4]->getValue()
- 			<< dAffich[5]->getValue()
- 			<< dAffich[6]->getValue()
- 			<< dAffich[1]->getValue()
- 			<< "  MORE"
- 			<< endl;
-
- 			cout << "------ ------" << endl;
-
- 			cout << " "
- 			<< dAffich[4]->getValue()
- 			<< dAffich[5]->getValue()
- 			<< dAffich[2]->getValue()
- 			<< dAffich[1]->getValue()
- 			<< dAffich[7]->getValue()
- 			<< " MONEY"
- 			<< endl;
-
-
-
-
-
- 			/*for (int k = 0; k < _n; ++k) {
-	 			cout << k << ": " << _domains[k]->getValue() << endl;
-	 		}*/
-
-
+			_p->afficher();
  			cout << endl;
 	 		cout << endl << "Trouver une autre solution ? o/n : ";
 	 		cin >> entree;
 	 		chercher = ((entree == "o") || (entree == "O"));
 	 		--i;
-
-
-	 		/*for (int k = 0; k < _n; ++k) {
-	 			cout << k << ": " << _domains[k]->getValue() << endl;
-	 		}*/
 	 	} else {
 	 		cout << "Pas de solution" << endl;
 	 		chercher = false;
@@ -199,6 +79,7 @@ void Solver::solve() {
 }
 
 void Solver::solveAll() {
+	int nbSol = 0;
 	int j, i = 0;
 	int id;
 	Domain *d = _p->getBestDomain();
@@ -247,15 +128,12 @@ void Solver::solveAll() {
 		}
 
 		if (i != -1) {
-			cout << "ABRICOT FARCI" << endl;
-			/*for (int k = 0; k < _n; ++k) {
-				cout << k << ":\t";
-				dAffich[k]->affichageResultatNQueen();
-			}
-			cout << endl;*/
+			_p->afficher();
+			cout << endl;
+			++nbSol;
 			--i;
 		} else {
-			cout << "Pas de solution" << endl;
+			cout << "Nombre de solution : " << nbSol << endl;
 		}
 	}
 }
