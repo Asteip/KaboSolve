@@ -25,18 +25,11 @@ void PMoreMoney::generateProblem() {
 	int i, j;
 	int *liste;
 	Domain **lDom;
-	_domains = new Domain * [13];
-	_n = 13;
+	_domains = new Domain * [12];
+	_n = 12;
 	_m = 11;
 	//_m = 1;
 
-	/*for (i = 0; i < 8; ++i) {
-		liste = new int[9];
-		for (j = 0; j < 9; ++j) {
-			liste[j] = j+1;
-		}
-		_domains[i] = new Domain(i, 9, liste);
-	}*/
 	for (i = 0; i < 8; ++i) {
 		liste = new int[10];
 		for (j = 0; j < 10; ++j) {
@@ -44,7 +37,7 @@ void PMoreMoney::generateProblem() {
 		}
 		_domains[i] = new Domain(i, 10, liste);
 	}
-	for (i; i < 13; ++i) {
+	for (i; i < 12; ++i) {
 		liste = new int[2];
 		liste[0] = 0;
 		liste[1] = 1;

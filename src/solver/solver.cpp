@@ -46,7 +46,6 @@ void Solver::solve() {
 	 	cout << "rE: "; dAffich[9]->affichageResultatSENDMORY();
 	 	cout << "rN: "; dAffich[10]->affichageResultatSENDMORY();
 	 	cout << "rO: "; dAffich[11]->affichageResultatSENDMORY();
-	 	cout << "rM: "; dAffich[12]->affichageResultatSENDMORY();
 
 
 	 	cout << endl << endl << endl;
@@ -116,7 +115,6 @@ void Solver::solve() {
 	 	cout << "rE: "; dAffich[9]->affichageResultatSENDMORY();
 	 	cout << "rN: "; dAffich[10]->affichageResultatSENDMORY();
 	 	cout << "rO: "; dAffich[11]->affichageResultatSENDMORY();
-	 	cout << "rM: "; dAffich[12]->affichageResultatSENDMORY();
 
 
 	 	cout << endl << endl << endl;
@@ -141,7 +139,6 @@ void Solver::solve() {
 
 
  			cout << " "
- 			<< dAffich[12]->getValue()
  			<< dAffich[11]->getValue()
  			<< dAffich[10]->getValue()
  			<< dAffich[9]->getValue()
