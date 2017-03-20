@@ -35,17 +35,21 @@ bool CSupOrEqual::applyConstraint(int id){
 			t /= _coefficients[i];
 			td /= _coefficients[i];
 
+			if (td < 0) {
+				--t;
+			}
+
 			if (t == td) {
 				if (_coefficients[i] > 0) {
-					modification = modification || _domains[i]->prunerInf(id, t-1);
+					modification = _domains[i]->prunerInf(id, t-1) || modification;
 				} else {
-					modification = modification || _domains[i]->prunerSup(id, t+1);
+					modification = _domains[i]->prunerSup(id, t+1) || modification;
 				}
 			} else {
 				if (_coefficients[i] > 0) {
-					modification = modification || _domains[i]->prunerInf(id, t);
+					modification = _domains[i]->prunerInf(id, t) || modification;
 				} else {
-					modification = modification || _domains[i]->prunerSup(id, t+1);
+					modification = _domains[i]->prunerSup(id, t+1) || modification;
 				}
 			}
 		}

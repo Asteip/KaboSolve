@@ -153,6 +153,7 @@ void Solver::solve() {
  			<< dAffich[1]->getValue()
  			<< dAffich[2]->getValue()
  			<< dAffich[3]->getValue()
+ 			<< "  SEND"
  			<< endl;
 
  			cout << "+ "
@@ -160,9 +161,10 @@ void Solver::solve() {
  			<< dAffich[5]->getValue()
  			<< dAffich[6]->getValue()
  			<< dAffich[1]->getValue()
+ 			<< "  MORE"
  			<< endl;
 
- 			cout << "------" << endl;
+ 			cout << "------ ------" << endl;
 
  			cout << " "
  			<< dAffich[4]->getValue()
@@ -170,7 +172,9 @@ void Solver::solve() {
  			<< dAffich[2]->getValue()
  			<< dAffich[1]->getValue()
  			<< dAffich[7]->getValue()
+ 			<< " MONEY"
  			<< endl;
+
 
 
 

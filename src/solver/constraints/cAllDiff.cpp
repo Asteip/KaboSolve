@@ -13,11 +13,17 @@ bool CAllDiff::applyConstraint(int id) {
 	int t;
 	bool modification = false;
 
-	t = _domains[id]->getValue();
+	int k = 0;
+	while ((k < _size) && (_domains[k]->getId() != id)) {
+		++k;
+	}
+	if (k < _size) {
+		t = _domains[k]->getValue();
 
-	for (int i = 0 ; i < _size ; ++i) {
-		if (!_domains[i]->getIsSet()) {
-			modification = modification || _domains[i]->prunerValeur(id, t);
+		for (int i = 0 ; i < _size ; ++i) {
+			if (!_domains[i]->getIsSet()) {
+				modification = _domains[i]->prunerValeur(id, t) || modification;
+			}
 		}
 	}
 

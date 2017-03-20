@@ -15,27 +15,34 @@ PMoreMoney::PMoreMoney() {
 
 PMoreMoney::~PMoreMoney() {}
 
-/*void PMoreMoney::applyConstraint(int id){	// Changer l'application de la contrainte de manière à continuer tant qu'il y a une modification
+void PMoreMoney::applyConstraint(int id){	// Changer l'application de la contrainte de manière à continuer tant qu'il y a une modification
 	for(int i = 0 ; i < _m ; ++i){
 		_constraints[i]->applyConstraint(id);
 	}
-}*/
+}
 
 void PMoreMoney::generateProblem() {
 	int i, j;
 	int *liste;
-	Domain ** lDom;
+	Domain **lDom;
 	_domains = new Domain * [13];
 	_n = 13;
-	_m = 10;
+	_m = 11;
 	//_m = 1;
 
-	for (i = 0; i < 8; ++i) {
+	/*for (i = 0; i < 8; ++i) {
 		liste = new int[9];
 		for (j = 0; j < 9; ++j) {
 			liste[j] = j+1;
 		}
 		_domains[i] = new Domain(i, 9, liste);
+	}*/
+	for (i = 0; i < 8; ++i) {
+		liste = new int[10];
+		for (j = 0; j < 10; ++j) {
+			liste[j] = j;
+		}
+		_domains[i] = new Domain(i, 10, liste);
 	}
 	for (i; i < 13; ++i) {
 		liste = new int[2];
@@ -45,8 +52,8 @@ void PMoreMoney::generateProblem() {
 	}
 
 	// coef, mem, dom, size
-	_constraints = new Constraint * [10];
-	// D+E = Y
+	_constraints = new Constraint * [11];
+	// D+E = Y+10*rY
 	// x3 + x1 -x7 -10*x8 = 0
 	liste = new int [4];
 	lDom = new Domain * [4];
@@ -125,11 +132,11 @@ void PMoreMoney::generateProblem() {
 
 
 
-	/*lDom = new Domain * [8];
+	lDom = new Domain * [8];
 	for (int i = 0; i < 8; ++i) {
 		lDom[i] = _domains[i];
 	}
-	_constraints[10] = new CAllDiff(lDom, 8);*/
+	_constraints[10] = new CAllDiff(lDom, 8);
 
 
 

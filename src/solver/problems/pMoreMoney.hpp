@@ -14,7 +14,7 @@ class PMoreMoney : public Problem {
 		PMoreMoney();
 		~PMoreMoney();
 
-		//void applyConstraint(int id);
+		void applyConstraint(int id);
 
 	private:
 		void generateProblem();

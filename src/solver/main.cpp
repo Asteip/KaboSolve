@@ -35,6 +35,9 @@ int main(int argc, char **argv) {
 	//s.test();
 	fin = clock();
 
+	/*int dix = 10;
+	int moinsSept = 7;*/
+
 	cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 
 	return 0;
