@@ -31,6 +31,8 @@ int main(int argc, char **argv) {
 
 	debut = clock();
 	s.solve();
+	//s.solveAll();
+	//s.test();
 	fin = clock();
 
 	cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;

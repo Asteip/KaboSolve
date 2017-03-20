@@ -11,33 +11,60 @@ CInfOrEqual::CInfOrEqual(int *coefficients, int rightMember, Domain **domains, i
 
 CInfOrEqual::~CInfOrEqual(){}
 
-void CInfOrEqual::applyConstraint(int id){
+bool CInfOrEqual::applyConstraint(int id){
 	double td = 0.0;
+	double coef;
+	bool modification = false;
 
 	for(int i = 0; i < _size; ++i) {
 		int t  = _rightMember;
 		if (!_domains[i]->getIsSet()) {
 			for(int j = 0; j < _size; ++j) {
 				if (i!=j) {
+					coef = _coefficients[j];
 					if(_domains[j]->getIsSet()) {
-						t += -_coefficients[j]*_domains[j]->getValue();
+						t -= coef*_domains[j]->getValue();
+					} else if (coef > 0) {
+						t -= coef*_domains[j]->getMin();
 					} else {
-						t += -_coefficients[j]*_domains[j]->getMin();
+						t -= coef*_domains[j]->getMax();
 					}
 				}
 			}
+			//cout << "ICI t=" << t << endl;
 			td = t;
 			t /= _coefficients[i];
 			td /= _coefficients[i];
-			//std::cout << "t=" << t << std::endl;
+
+			/*cout << "t=" << t << endl;
+			cout << "td=" << td << endl;*/
+
 
 			if (t == td) {
-				_domains[i]->prunerSup(id, t);
+				if (_coefficients[i] > 0) {
+					modification = modification || _domains[i]->prunerSup(id, t+1);
+				} else {
+					modification = modification || _domains[i]->prunerInf(id, t-1);
+				}
 			} else {
-				_domains[i]->prunerSup(id, t+1);
+				if (_coefficients[i] > 0) {
+					modification = modification || _domains[i]->prunerSup(id, t+1);
+				} else {
+					modification = modification || _domains[i]->prunerInf(id, t);
+				}
 			}
+
+
+
+			/*} else {
+				cout << "prunage <= " << _domains[i]->getId() << endl;
+				std::cout << "t=" << t << std::endl << endl;
+				_domains[i]->prunerSup(id, t);
+			}*/
 		}
 	}
+
+	return modification;
 }
 
 void CInfOrEqual::display() {

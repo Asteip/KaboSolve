@@ -9,7 +9,7 @@ public:
 	CInf(int *coefficients, int rightMember, Domain **domains, int size);
 	~CInf();
 
-	virtual void applyConstraint(int id);
+	virtual bool applyConstraint(int id);
 	
 private:
 	int *_coefficients;

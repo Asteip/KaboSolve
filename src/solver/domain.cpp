@@ -116,10 +116,12 @@ void Domain::fixer() {
 }
 
 // PRUNAGES
-void Domain::prunerValeur(int id, int val) {
+bool Domain::prunerValeur(int id, int val) {
+	bool modification = false;
 	if ((val >= possibles[0]) && (val <= possibles[size-1])) {
 		int ind = indVal(val);
 		if (ind != -1) {
+			modification = true;
 			pruned[nbPruned] = val;
 			indexes[nbPruned] = id;
 			++nbPruned;
@@ -127,13 +129,15 @@ void Domain::prunerValeur(int id, int val) {
 			for (int i = ind; i < size; ++i) {
 				possibles[i] = possibles[i+1];
 			}
-			//memmove(possibles+ind, possibles+ind+1, (size-ind)*sizeof(int));
 		}
 	}
+	return modification;
 }
 
-void Domain::prunerSup(int id, int val) {
-	if (val <= possibles[size-1]) {
+bool Domain::prunerSup(int id, int val) {
+	bool modification = false;
+	if ((size > 0) && (val <= possibles[size-1])) {
+		modification = true;
 		int ind = posValSupOuEgale(val);
 		int diff = size-ind;
 		for (int i = size-1; i >= ind; --i) {
@@ -143,23 +147,26 @@ void Domain::prunerSup(int id, int val) {
 		}
 		size = size - diff;
 	}
+	return modification;
 }
 
-void Domain::prunerInf(int id, int val) {
-	if (val >= possibles[0]) {
+bool Domain::prunerInf(int id, int val) {
+	bool modification = false;
+	if ((size > 0) && (val >= possibles[0])) {
+		modification = true;
 		int ind = posValInfOuEgale(val);
-		int i;
-		for (i = ind; i >= 0; --i) {
+		for (int i = ind; i >= 0; --i) {
 			pruned[nbPruned] = possibles[i];
 			indexes[nbPruned] = id;
 			possibles[i] = possibles[i+ind+1];
 			++nbPruned;
 		}
-		for (i = ind+1; i < size; ++i) {
+		for (int i = ind+1; i < size; ++i) {
 			possibles[i] = possibles[i+ind+1];
 		}
 		size = size - ind - 1;
 	}
+	return modification;
 }
 
 // BACKTRACK
@@ -319,6 +326,18 @@ void Domain::affichageResultatNQueen() {
 		}
 	}
 	cout << endl;
+}
+
+void Domain::affichageResultatSENDMORY() {
+	if (isSet) {
+		cout << value << endl;
+	} else {
+		cout << "(" << possibles[0]; 
+		for (int i = 1; i < size; ++i) {
+			cout << "," << possibles[i];
+		}
+		cout << ")" << endl;
+	}
 }
 
 

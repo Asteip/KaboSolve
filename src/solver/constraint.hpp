@@ -31,7 +31,7 @@ public:
 	 * \details This function is called when a variable is fixed in a domain.
 	 * All domain are checked using this constraint.
 	 */
-	virtual void applyConstraint(int id) = 0;
+	virtual bool applyConstraint(int id) = 0;
 
 	/*!
 	 * \brief Display information to the standard output.

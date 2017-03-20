@@ -10,7 +10,7 @@ public:
 	~CAllDiff();
 
 	virtual void display();
-	virtual void applyConstraint(int id);
+	virtual bool applyConstraint(int id);
 };
 
 #endif

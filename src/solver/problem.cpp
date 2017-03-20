@@ -42,10 +42,14 @@ Domain *Problem::getBestDomain() {
 	return res;
 }
 
-void Problem::applyConstraint(int id){
-	for(int i = 0 ; i < _m ; ++i){
-		_constraints[i]->applyConstraint(id);
-	}
+void Problem::applyConstraint(int id) {
+	bool modification;
+	do {
+		modification = false;
+		for(int i = 0 ; i < _m ; ++i){
+			modification = modification || _constraints[i]->applyConstraint(id);
+		}
+	} while (modification);
 }
 
 void Problem::backtrack(int id){

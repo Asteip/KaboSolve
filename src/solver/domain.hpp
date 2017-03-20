@@ -47,21 +47,21 @@ class Domain {
 		 * \param id the id of the variable that activates this prune.
 		 * \param val the value of the variable to prune.
 		 */
-		void prunerValeur(int id, int val);
+		bool prunerValeur(int id, int val);
 
 		/*!
 		 * \brief Prunes the values above the value val.
 		 * \param id the id of the variable that activates this prune.
 		 * \param val the value above which the values are pruned.
 		 */
-		void prunerSup(int id, int val);
+		bool prunerSup(int id, int val);
 
 		/*!
 		 * \brief Prunes the values under the value val.
 		 * \param id the id of the variable that activates this prune.
 		 * \param val the value under which the values are pruned.
 		 */
-		void prunerInf(int id, int val);
+		bool prunerInf(int id, int val);
 
 		/*!
 		 * \brief Unprunes the values pruned by the variable with the identifiant id.
@@ -87,6 +87,7 @@ class Domain {
 		void affichage();
 		void affichageNQueen();
 		void affichageResultatNQueen();
+		void affichageResultatSENDMORY();
 
 
 

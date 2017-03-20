@@ -27,3 +27,9 @@ void PNQueen::generateProblem() {
 	_constraints[0] = new CNQueen(_domains, _n);
 	_constraints[1] = new CAllDiff(_domains, _n);
 }
+
+void PNQueen::applyConstraint(int id) {
+	for(int i = 0 ; i < _n ; ++i){
+		_domains[i]->backtrack(id);
+	}
+}

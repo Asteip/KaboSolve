@@ -8,8 +8,9 @@ CInf::CInf(int *coefficients, int rightMember, Domain **domains, int size) : Con
 CInf::~CInf(){
 }
 
-void CInf::applyConstraint(int id){
+bool CInf::applyConstraint(int id){
 	double td = 0.0;
+	bool modification = false;
 
 	for(int i = 0; i < _size; ++i) {
 		int t  = _rightMember;
@@ -29,10 +30,12 @@ void CInf::applyConstraint(int id){
 			std::cout << "t=" << t << std::endl;
 
 			if (t == td) {
-				_domains[i]->prunerSup(id, t+1);
+				modification = modification || _domains[i]->prunerSup(id, t+1);
 			} else {
-				_domains[i]->prunerSup(id, t+1);
+				modification = modification || _domains[i]->prunerSup(id, t+1);
 			}
 		}
 	}
+
+	return modification;
 }

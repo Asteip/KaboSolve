@@ -12,6 +12,8 @@ class PNQueen : public Problem {
 		PNQueen(int n);
 		~PNQueen();
 
+		void applyConstraint(int id);
+
 	private:
 		void generateProblem();
 };

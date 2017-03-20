@@ -6,12 +6,15 @@
 #include "../constraints/cEqual.hpp"
 #include "../constraints/cSupOrEqual.hpp"
 #include "../constraints/cInfOrEqual.hpp"
+#include "../constraints/cAllDiff.hpp"
 
 class PMoreMoney : public Problem {
 
 	public:
 		PMoreMoney();
 		~PMoreMoney();
+
+		//void applyConstraint(int id);
 
 	private:
 		void generateProblem();

@@ -13,6 +13,7 @@ public:
 	Solver (Problem *p);
 	void solve();
 	void solveAll();
+	void test();
 
 private:
 	Problem *_p;
