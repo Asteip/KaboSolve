@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 
 		if(strstr(argv[1], "N-reines")){
 
-			cout << "Problème du N-reines." << endl;
+			cout << "***** Problème du N-reines. *****" << endl << endl;
 
 			if(argv[3] == NULL || strlen(argv[3]) == 0){
 				cout << "Veuillez spécifier un nombre de reines." << endl;
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
 				int N = atoi(argv[3]);
 				
 				if(N == 0){
-					cout << "Erreur le nombre de reines doit être un entier" << endl;
+					cout << "ERREUR : le nombre de reines doit être un entier" << endl;
 				}
 				else{
 					Problem *p = new PNQueen(N);
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
 					else if(strstr(argv[2], "all"))
 						s.solveAll();
 					else
-						cout << "Erreur ce choix de solver n'existe pas." << endl;
+						cout << "ERREUR : ce choix de solver n'existe pas." << endl;
 
 					fin = clock();
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
 
 		}
 		else if(strstr(argv[1], "more-money")){
-			cout << "Problème du send more money." << endl;;
+			cout << "***** Problème du send more money. *****" << endl << endl;;
 				
 			Problem *p = new PMoreMoney();
 			
@@ -78,20 +78,17 @@ int main(int argc, char **argv) {
 			else if(strstr(argv[2], "all"))
 				s.solveAll();
 			else
-				cout << "Erreur ce choix de solver n'existe pas." << endl;
+				cout << "ERREUR : ce choix de solver n'existe pas." << endl;
 
 			fin = clock();
 
 			cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 		}
 		else{
-			cout << "Pas de problème : " << argv[1] << endl;
+			cout << "ERREUR : Pas de problème : " << argv[1] << endl << endl;
 		}
 
-		//s.test();
-
-		/*int dix = 10;
-		int moinsSept = 7;*/
+		cout << endl << "=== END ===" << endl;
 	}
 
 	return 0;

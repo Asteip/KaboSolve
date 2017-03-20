@@ -18,6 +18,7 @@ public:
 	Domain ** getDomains();
 	int getM();
 	Constraint ** getConstraints();
+	virtual void afficher();
 
 protected:
 	virtual void generateProblem() = 0;

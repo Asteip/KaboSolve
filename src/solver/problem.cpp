@@ -73,3 +73,7 @@ int Problem::getM(){
 Constraint ** Problem::getConstraints(){
 	return _constraints;
 }
+
+void Problem::afficher() {
+
+}

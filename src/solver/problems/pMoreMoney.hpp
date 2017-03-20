@@ -15,6 +15,7 @@ class PMoreMoney : public Problem {
 		~PMoreMoney();
 
 		void applyConstraint(int id);
+		void afficher();
 
 	private:
 		void generateProblem();

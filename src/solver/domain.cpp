@@ -171,23 +171,6 @@ bool Domain::prunerInf(int id, int val) {
 
 // BACKTRACK
 void Domain::backtrack(int id) {
-	/*cout << "AVANT" << endl;
-	cout << "size=" << size << endl;
-	cout << "nbPruned=" << nbPruned << endl;
-	cout << "possibles :" << endl;
-	for (int l = 0; l < size; ++l) {
-		cout << possibles[l] << "|";
-	}
-	cout << endl << "pruned :" << endl;
-	for (int l = 0; l < nbPruned; ++l) {
-		cout << pruned[l] << "|";
-	}*/
-
-
-
-
-
-
 	int i, ind;
 	while ((nbPruned > 0) && (indexes[nbPruned-1] == id)) {
 		--nbPruned;
@@ -195,30 +178,9 @@ void Domain::backtrack(int id) {
 		for (i = size; i > ind; --i) {
 			possibles[i] = possibles[i-1];
 		}
-		//memmove(possibles+ind+1, possibles+ind, (size-ind)*sizeof(int));
 		possibles[ind] = pruned[nbPruned];
 		++size;
 	}
-
-
-
-
-
-
-
-
-
-	/*cout << endl << "APRES" << endl;
-	cout << "size=" << size << endl;
-	cout << "nbPruned=" << nbPruned << endl;
-	cout << "possibles :" << endl;
-	for (int l = 0; l < size; ++l) {
-		cout << possibles[l] << "|";
-	}
-	cout << endl << "pruned :" << endl;
-	for (int l = 0; l < nbPruned; ++l) {
-		cout << pruned[l] << "|";
-	}*/
 }
 
 void Domain::reset() {

@@ -139,3 +139,37 @@ void PMoreMoney::generateProblem() {
 // S=x0 E=x1 N=x2 D=x3 M=x4 O=x5 R=x6 Y=x7
 // rY=x8 rE=X9 rN=x10 rO=x11 rM=x12
 }
+
+void PMoreMoney::afficher() {
+
+			cout << " "
+ 			<< _domains[11]->getValue()
+ 			<< _domains[10]->getValue()
+ 			<< _domains[9]->getValue()
+ 			<< _domains[8]->getValue()
+ 			<< endl;
+
+ 			cout << "  "
+ 			<< _domains[0]->getValue()
+ 			<< _domains[1]->getValue()
+ 			<< _domains[2]->getValue()
+ 			<< _domains[3]->getValue()
+ 			<< endl;
+
+ 			cout << "+ "
+ 			<< _domains[4]->getValue()
+ 			<< _domains[5]->getValue()
+ 			<< _domains[6]->getValue()
+ 			<< _domains[1]->getValue()
+ 			<< endl;
+
+ 			cout << "------" << endl;
+
+ 			cout << " "
+ 			<< _domains[4]->getValue()
+ 			<< _domains[5]->getValue()
+ 			<< _domains[2]->getValue()
+ 			<< _domains[1]->getValue()
+ 			<< _domains[7]->getValue()
+ 			<< endl;
+}
