@@ -27,7 +27,7 @@ void PMoreMoney::generateProblem() {
 	Domain **lDom;
 	_domains = new Domain * [12];
 	_n = 12;
-	_m = 11;
+	_m = 6;
 	//_m = 1;
 
 	for (i = 0; i < 8; ++i) {
@@ -58,8 +58,7 @@ void PMoreMoney::generateProblem() {
 	lDom[1] = _domains[1];
 	lDom[2] = _domains[7];
 	lDom[3] = _domains[8];
-	_constraints[0] = new CSupOrEqual(liste, 0, lDom, 4);
-	_constraints[1] = new CInfOrEqual(liste, 0, lDom, 4);
+	_constraints[0] = new CEqual(liste, 0, lDom, 4);
 
 	// N+R = E
 	// x2 + x6 +x8 -x1 -10*x9 = 0
@@ -75,8 +74,7 @@ void PMoreMoney::generateProblem() {
 	lDom[2] = _domains[8];
 	lDom[3] = _domains[1];
 	lDom[4] = _domains[9];
-	_constraints[2] = new CSupOrEqual(liste, 0, lDom, 5);
-	_constraints[3] = new CInfOrEqual(liste, 0, lDom, 5);
+	_constraints[1] = new CEqual(liste, 0, lDom, 5);
 
 	// E+O = N
 	// x1 + x5 +x9 -x2 -10*x10 = 0
@@ -92,8 +90,7 @@ void PMoreMoney::generateProblem() {
 	lDom[2] = _domains[9];
 	lDom[3] = _domains[2];
 	lDom[4] = _domains[10];
-	_constraints[4] = new CSupOrEqual(liste, 0, lDom, 5);
-	_constraints[5] = new CInfOrEqual(liste, 0, lDom, 5);
+	_constraints[2] = new CEqual(liste, 0, lDom, 5);
 
 	// S+M = O
 	// x0 + x4 +x10 -x5 -10*x11 = 0
@@ -109,8 +106,7 @@ void PMoreMoney::generateProblem() {
 	lDom[2] = _domains[10];
 	lDom[3] = _domains[5];
 	lDom[4] = _domains[11];
-	_constraints[6] = new CSupOrEqual(liste, 0, lDom, 5);
-	_constraints[7] = new CInfOrEqual(liste, 0, lDom, 5);
+	_constraints[3] = new CEqual(liste, 0, lDom, 5);
 
 	// M = rO
 	// x4 - x11 = 0
@@ -120,8 +116,7 @@ void PMoreMoney::generateProblem() {
 	liste[1] = -1;
 	lDom[0] = _domains[4];
 	lDom[1] = _domains[11];
-	_constraints[8] = new CSupOrEqual(liste, 0, lDom, 2);
-	_constraints[9] = new CInfOrEqual(liste, 0, lDom, 2);
+	_constraints[4] = new CEqual(liste, 0, lDom, 2);
 
 
 
@@ -129,7 +124,7 @@ void PMoreMoney::generateProblem() {
 	for (int i = 0; i < 8; ++i) {
 		lDom[i] = _domains[i];
 	}
-	_constraints[10] = new CAllDiff(lDom, 8);
+	_constraints[5] = new CAllDiff(lDom, 8);
 
 
 

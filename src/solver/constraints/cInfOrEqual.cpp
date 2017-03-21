@@ -12,6 +12,59 @@ CInfOrEqual::CInfOrEqual(int *coefficients, int rightMember, Domain **domains, i
 CInfOrEqual::~CInfOrEqual(){}
 
 bool CInfOrEqual::applyConstraint(int id){
+	int t;
+	double td = 0.0;
+	double coef;
+	bool modification = false;
+
+	double somme = _rightMember;
+	for(int i = 0; i < _size; ++i) {
+		coef = _coefficients[i];
+		if (_domains[i]->getIsSet()) {
+			somme -= coef*_domains[i]->getValue();
+		} else if (coef > 0) {
+			somme -= coef*_domains[i]->getMin();
+		} else {
+			somme -= coef*_domains[i]->getMax();
+		}
+	}
+
+	for (int i = 0; i < _size; ++i) {
+		if (!_domains[i]->getIsSet()) {
+			coef = _coefficients[i];
+			if (coef > 0) {
+				t = somme + coef*_domains[i]->getMin();
+			} else {
+				t = somme + coef*_domains[i]->getMax();
+			}
+			td = t;
+			t /= _coefficients[i];
+			td /= _coefficients[i];
+
+			if (td < 0) {
+				--t;
+			}
+
+			if (t == td) {
+				if (_coefficients[i] > 0) {
+					modification = _domains[i]->prunerSup(id, t+1) || modification;
+				} else {
+					modification = _domains[i]->prunerInf(id, t-1) || modification;
+				}
+			} else {
+				if (_coefficients[i] > 0) {
+					modification = _domains[i]->prunerSup(id, t+1) || modification;
+				} else {
+					modification = _domains[i]->prunerInf(id, t) || modification;
+				}
+			}
+		}
+	}
+
+	return modification;
+}
+
+/*bool CInfOrEqual::applyConstraint(int id){
 	double td = 0.0;
 	double coef;
 	bool modification = false;
@@ -31,7 +84,6 @@ bool CInfOrEqual::applyConstraint(int id){
 					}
 				}
 			}
-			//cout << "ICI t=" << t << endl;
 			td = t;
 			t /= _coefficients[i];
 			td /= _coefficients[i];
@@ -39,10 +91,6 @@ bool CInfOrEqual::applyConstraint(int id){
 			if (td < 0) {
 				--t;
 			}
-
-			/*cout << "t=" << t << endl;
-			cout << "td=" << td << endl;*/
-
 
 			if (t == td) {
 				if (_coefficients[i] > 0) {
@@ -57,19 +105,11 @@ bool CInfOrEqual::applyConstraint(int id){
 					modification = _domains[i]->prunerInf(id, t) || modification;
 				}
 			}
-
-
-
-			/*} else {
-				cout << "prunage <= " << _domains[i]->getId() << endl;
-				std::cout << "t=" << t << std::endl << endl;
-				_domains[i]->prunerSup(id, t);
-			}*/
 		}
 	}
 
 	return modification;
-}
+}*/
 
 void CInfOrEqual::display() {
 	cout << "size=" << _size << endl;
