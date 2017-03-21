@@ -2,6 +2,7 @@
 #include "problem.hpp"
 #include "problems/pNQueen.hpp"
 #include "problems/pMoreMoney.hpp"
+#include "problems/PMagicSquare.hpp"
 #include "domain.hpp"
 #include "constraint.hpp"
 #include "constraints/cInfOrEqual.hpp"
@@ -83,6 +84,38 @@ int main(int argc, char **argv) {
 			fin = clock();
 
 			cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
+		}
+		else if(strstr(argv[1], "magic-square")){
+			cout << "***** Problème du magic-square. *****" << endl << endl;
+
+			if(argv[3] == NULL || strlen(argv[3]) == 0){
+				cout << "Veuillez spécifier une taille de carré." << endl;
+				cout << "Exemple : \"KaboSolve magic-square one 5\" pour exécuter le problème sur un carré de taille 5." << endl;
+			}
+			else{
+				int N = atoi(argv[3]);
+				
+				if(N == 0){
+					cout << "ERREUR : la taille du carré doit être un entier" << endl;
+				}
+				else{
+					Problem *p = new PMagicSquare(N);
+
+					Solver s(p);
+					debut = clock();
+
+					if(strstr(argv[2], "one"))
+						s.solve();
+					else if(strstr(argv[2], "all"))
+						s.solveAll();
+					else
+						cout << "ERREUR : ce choix de solver n'existe pas." << endl;
+
+					fin = clock();
+
+					cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
+				}
+			}
 		}
 		else{
 			cout << "ERREUR : Pas de problème : " << argv[1] << endl << endl;

@@ -15,7 +15,7 @@ PMoreMoney::PMoreMoney() {
 
 PMoreMoney::~PMoreMoney() {}
 
-void PMoreMoney::applyConstraint(int id){	// Changer l'application de la contrainte de manière à continuer tant qu'il y a une modification
+void PMoreMoney::applyConstraint(int id){	// méthode optimale ?
 	for(int i = 0 ; i < _m ; ++i){
 		_constraints[i]->applyConstraint(id);
 	}

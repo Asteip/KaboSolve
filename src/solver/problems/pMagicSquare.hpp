@@ -1,22 +1,25 @@
-#ifndef P_MORE_MONEY_HPP
-#define P_MORE_MONEY_HPP
+#ifndef P_MAGIC_SQUARE
+#define P_MAGIC_SQUARE
 
 #include "../problem.hpp"
 #include "../constraint.hpp"
 #include "../constraints/cEqual.hpp"
 #include "../constraints/cAllDiff.hpp"
 
-class PMoreMoney : public Problem {
+class PMagicSquare : public Problem {
+
+	private:
+		int _taille;
 
 	public:
-		PMoreMoney();
-		~PMoreMoney();
+		PMagicSquare(int n);
+		~PMagicSquare();
 
 		void applyConstraint(int id);
 		void afficher();
 
 	private:
-		void generateProblem();
+		void generateProblem(int n);
 };
 
 #endif
