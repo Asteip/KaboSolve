@@ -38,7 +38,7 @@ Domain *Problem::getBestDomain() {
 		}
 		++i;
 	}
-
+	
 	return res;
 }
 
@@ -47,7 +47,7 @@ void Problem::applyConstraint(int id) {
 	do {
 		modification = false;
 		for(int i = 0 ; i < _m ; ++i){
-			modification = modification || _constraints[i]->applyConstraint(id);
+			modification = _constraints[i]->applyConstraint(id) || modification;
 		}
 	} while (modification);
 }

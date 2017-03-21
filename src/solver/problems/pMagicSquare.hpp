@@ -10,6 +10,7 @@ class PMagicSquare : public Problem {
 
 	private:
 		int _taille;
+		int _magic;
 
 	public:
 		PMagicSquare(int n);
@@ -19,7 +20,7 @@ class PMagicSquare : public Problem {
 		void afficher();
 
 	private:
-		void generateProblem(int n);
+		void generateProblem();
 };
 
 #endif

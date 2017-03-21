@@ -2,7 +2,7 @@
 #include "problem.hpp"
 #include "problems/pNQueen.hpp"
 #include "problems/pMoreMoney.hpp"
-#include "problems/PMagicSquare.hpp"
+#include "problems/pMagicSquare.hpp"
 #include "domain.hpp"
 #include "constraint.hpp"
 #include "constraints/cInfOrEqual.hpp"
@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
 	if(argc < 3){
 		cout << "Usage : KaboSolve <probleme> <choix-solver> [<options>]" << endl;
 		cout << "Options valides : " << endl;
-		cout << "	probleme : N-reines, more-money" << endl;
+		cout << "	probleme : N-reines, more-money magic-square" << endl;
 		cout << "	choix-solver : one, all" << endl;
 		cout << "	options : options complémentaires" << endl;
 	}
@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
 			cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 		}
 		else if(strstr(argv[1], "magic-square")){
-			cout << "***** Problème du magic-square. *****" << endl << endl;
+			cout << "***** Problème du carré magique. *****" << endl << endl;
 
 			if(argv[3] == NULL || strlen(argv[3]) == 0){
 				cout << "Veuillez spécifier une taille de carré." << endl;
@@ -99,7 +99,7 @@ int main(int argc, char **argv) {
 					cout << "ERREUR : la taille du carré doit être un entier" << endl;
 				}
 				else{
-					Problem *p = new PMagicSquare(N);
+					PMagicSquare *p = new PMagicSquare(N);
 
 					Solver s(p);
 					debut = clock();
