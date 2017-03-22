@@ -5,6 +5,7 @@
 #include "../constraint.hpp"
 #include "../constraints/cEqual.hpp"
 #include "../constraints/cAllDiff.hpp"
+#include "../constraints/cInfOrEqual.hpp"
 
 class PMagicSquare : public Problem {
 
