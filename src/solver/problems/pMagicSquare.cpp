@@ -12,11 +12,11 @@ PMagicSquare::PMagicSquare(int n) {
 
 PMagicSquare::~PMagicSquare() {}
 
-void PMagicSquare::applyConstraint(int id){
+/*void PMagicSquare::applyConstraint(int id){
 	for(int i = 0 ; i < _m ; ++i){
 		_constraints[i]->applyConstraint(id);
 	}
-}
+}*/
 
 void PMagicSquare::generateProblem() {
 	int *liste;
@@ -63,7 +63,7 @@ void PMagicSquare::generateProblem() {
 	// DIAGONALE 2
 	lDom = new Domain * [_taille];
 	for(int i = 0; i < _taille; ++i) {
-		lDom[i] = _domains[((i+1)*_taille)-1];
+		lDom[i] = _domains[((i+1)*_taille)-i-1];
 	}
 	_constraints[_m-5] = new CEqual(liste, _magic, lDom, _taille);
 	
@@ -79,31 +79,32 @@ void PMagicSquare::generateProblem() {
 	liste[0] = 1;
 	liste[1] = -1;
 
+	// X1,1 < X1,n
 	lDom = new Domain * [2];
 	lDom[0] = _domains[0];
 	lDom[1] = _domains[_taille-1];
 	_constraints[_m-3] = new CInfOrEqual(liste, 0, lDom, 2);
 
-	lDom = new Domain * [2];
-	lDom[0] = _domains[0];
-	lDom[1] = _domains[_n-_taille];
-	_constraints[_m-2] = new CInfOrEqual(liste, 0, lDom, 2);
-
+	// X1,n < Xn,1
 	lDom = new Domain * [2];
 	lDom[0] = _domains[_taille-1];
 	lDom[1] = _domains[_n-_taille];
+	_constraints[_m-2] = new CInfOrEqual(liste, 0, lDom, 2);
+
+	// X1,1 < Xn,n
+	lDom = new Domain * [2];
+	lDom[0] = _domains[0];
+	lDom[1] = _domains[_n-1];
 	_constraints[_m-1] = new CInfOrEqual(liste, 0, lDom, 2);
 
-	//_m -= 1;
 }
 
 void PMagicSquare::afficher() {
 	cout << "somme = " << _magic << endl;
 	int somme = 0;
 
-	// Somme de la diagonale 2
 	for (int i = 0; i < _taille; ++i) {
-		somme += _domains[((i+1)*_taille)-1]->getValue();
+		somme += _domains[((i+1)*_taille)-i-1]->getValue();
 		cout << "\t";
 	}
 	cout << "[" << somme << "]" << endl;
