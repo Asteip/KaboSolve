@@ -218,9 +218,12 @@ bool Domain::getIsSet() {
 	return isSet;
 }
 
+void Domain::setId(int id) {
+	this->id = id;
+}
 
 // AFFICHAGE DEBUG
-void Domain::affichage() {
+/*void Domain::affichage() {
 	cout << "id=" << id << endl;
 	cout << "n=" << n << endl;
 	cout << "size=" << size << endl;
@@ -238,17 +241,6 @@ void Domain::affichage() {
 		cout << i << ": " << pruned[i] << " | " << indexes[i] << endl;
 	}
 }
-
-/*void Domain::affichageNQueen() {
-	cout << "{";
-	if (size > 0) {
-		cout << possibles[0];
-	}
-	for (int i = 1; i < size; ++i) {
-		 cout << ", " << possibles[i];
-	}
-	cout << "}" << endl;
-}*/
 
 void Domain::affichageNQueen() {
 	int j = 0;
@@ -300,10 +292,4 @@ void Domain::affichageResultatSENDMORY() {
 		}
 		cout << ")" << endl;
 	}
-}
-
-
-
-void Domain::setId(int id) {
-	this->id = id;
-}
+}*/
