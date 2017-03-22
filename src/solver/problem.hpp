@@ -14,17 +14,17 @@ class Problem{
 public:
 
 	/*!
-	 * \brief
+	 * \brief Constructor of Problem. To create an instance of a specific problem, you must use an inherited class of it. 
 	 */
 	Problem();
 	
 	/*!
-	 * \brief
+	 * \brief Destructor of Problem.
 	 */
 	virtual ~Problem();
 
 	/*!
-	 * 
+	 * \brief 
 	 */
 	virtual Domain * getBestDomain();
 	
