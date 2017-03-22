@@ -78,13 +78,7 @@ void PMoreMoney::generateProblem() {
 
 	// E+O = N
 	// x1 + x5 +x9 -x2 -10*x10 = 0
-	liste = new int [5];
 	lDom = new Domain * [5];
-	liste[0] = 1;
-	liste[1] = 1;
-	liste[2] = 1;
-	liste[3] = -1;
-	liste[4] = -10;
 	lDom[0] = _domains[1];
 	lDom[1] = _domains[5];
 	lDom[2] = _domains[9];
@@ -94,13 +88,7 @@ void PMoreMoney::generateProblem() {
 
 	// S+M = O
 	// x0 + x4 +x10 -x5 -10*x11 = 0
-	liste = new int [5];
 	lDom = new Domain * [5];
-	liste[0] = 1;
-	liste[1] = 1;
-	liste[2] = 1;
-	liste[3] = -1;
-	liste[4] = -10;
 	lDom[0] = _domains[0];
 	lDom[1] = _domains[4];
 	lDom[2] = _domains[10];

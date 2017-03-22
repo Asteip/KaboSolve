@@ -86,8 +86,7 @@ void Solver::solveAll() {
 	Domain *d = _p->getBestDomain();
 	id = d->getId();
 
-	Domain **dAffich = _p->getDomains();
-
+	_p->applyConstraint(-2);
 	while (i != -1) {
 		while ((i != -1) && (i < _n)) {
 			if (d->getIsSet()) {
