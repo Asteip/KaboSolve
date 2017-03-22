@@ -24,6 +24,7 @@ void Solver::solve() {
 	Domain *d = _p->getBestDomain();
 	id = d->getId();
 
+	_p->applyConstraint(-2);
  	while (chercher) {
 		while ((i != -1) && (i < _n)) {
 			if (d->getIsSet()) {

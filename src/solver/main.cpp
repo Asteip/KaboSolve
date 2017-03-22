@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
 	if(argc < 3){
 		cout << "Usage : KaboSolve <probleme> <choix-solver> [<options>]" << endl;
 		cout << "Options valides : " << endl;
-		cout << "	probleme : N-reines, more-money magic-square" << endl;
+		cout << "	probleme : N-reines, more-money, magic-square" << endl;
 		cout << "	choix-solver : one, all" << endl;
 		cout << "	options : options complémentaires" << endl;
 	}
