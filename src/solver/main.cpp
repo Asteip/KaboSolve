@@ -125,9 +125,7 @@ int main(int argc, char **argv) {
 					cout << endl << "Time : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 				}
 			}
-		} else if(strstr(argv[1], "sudoku")){
-			
-		}
+		} 
 		else if(strstr(argv[1], sudoku) && strlen(argv[1]) == strlen(sudoku)){
 			cout << "***** SUDOKU problem *****" << endl << endl;;
 				
