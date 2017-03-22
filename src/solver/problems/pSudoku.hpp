@@ -7,8 +7,12 @@
 
 class PSudoku : public Problem {
 
+	private:
+		int _latin;
+		bool _diag;
+
 	public:
-		PSudoku();
+		PSudoku(int n, bool diag);
 		~PSudoku();
 
 		void applyConstraint(int id);

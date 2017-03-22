@@ -101,38 +101,13 @@ void PMagicSquare::generateProblem() {
 
 void PMagicSquare::afficher() {
 	cout << "somme = " << _magic << endl;
-	int somme = 0;
 
 	for (int i = 0; i < _taille; ++i) {
-		somme += _domains[((i+1)*_taille)-i-1]->getValue();
-		cout << "\t";
-	}
-	cout << "[" << somme << "]" << endl;
-
-	for (int i = 0; i < _taille; ++i) {
-		somme = 0;
 		for (int j = 0; j < _taille; ++j) {
-			somme += _domains[i*_taille+j]->getValue();
-			cout << "  " << _domains[i*_taille+j]->getValue() << "\t";
+			cout << _domains[i*_taille+j]->getValue() << "\t";
 		}
-		cout << "[" << somme << "]" << endl;
+		cout << endl;
 	}
-
-	// Somme des colonnes
-	for (int i = 0; i < _taille; ++i) {
-		somme = 0;
-		for (int j = 0; j < _taille; ++j) {
-			somme += _domains[j*_taille+i]->getValue();
-		}
-		cout << "[" << somme << "]\t";
-	}
-
-	// Somme de la diagonale 1
-	somme = 0;
-	for (int i = 0; i < _taille; ++i) {
-		somme += _domains[i*_taille+i]->getValue();
-	}
-	cout << "[" << somme << "]" << endl;
 
 	cout << endl;
 }

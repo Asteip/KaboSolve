@@ -67,7 +67,7 @@ void Solver::solve() {
 
 		if (i != -1) {
 			_p->afficher();
- 			cout << endl;
+ 			//cout << endl;
 	 		cout << endl << "Trouver une autre solution ? o/n : ";
 	 		cin >> entree;
 	 		chercher = ((entree == "o") || (entree == "O"));
@@ -128,45 +128,12 @@ void Solver::solveAll() {
 		}
 
 		if (i != -1) {
-			_p->afficher();
-			cout << endl;
+			/*_p->afficher();
+			cout << endl;*/
 			++nbSol;
 			--i;
 		} else {
 			cout << "Nombre de solution : " << nbSol << endl;
 		}
 	}
-}
-
-void Solver::test() {
-	int *coef = new int [10];
-	Domain **d = new Domain * [3];
-	//CInfOrEqual *c;
-	CSupOrEqual *c;
-
-	int *l = new int [10];
-	for (int i = 0; i < 10; ++i) {
-		l[i] = 3*i+1;
-	}
-	coef[0] = 1;
-	d[0] = new Domain(0, 10, l);
-
-	l = new int [10];
-	for (int i = 0; i < 10; ++i) {
-		l[i] = 3*i+1;
-	}
-	coef[1] = 3;
-	d[1] = new Domain(1, 10, l);
-
-	//c = new CInfOrEqual(coef, 20, d, 2);
-	c = new CSupOrEqual(coef, 41, d, 2);
-
-	d[0]->affichage();
-	d[1]->affichage();
-
-	cout << endl << endl << "APPLICATION DE LA CONTRAINTE |||||||||||||||||||||||||||" << endl << endl;
-	c->applyConstraint(0);
-
-	d[0]->affichage();
-	d[1]->affichage();
 }

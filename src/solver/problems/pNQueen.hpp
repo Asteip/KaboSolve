@@ -5,6 +5,7 @@
 #include "../constraint.hpp"
 #include "../constraints/cNQueen.hpp"
 #include "../constraints/cAllDiff.hpp"
+#include "../constraints/cInfOrEqual.hpp"
 
 class PNQueen : public Problem {
 

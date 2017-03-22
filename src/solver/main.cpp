@@ -27,11 +27,12 @@ int main(int argc, char **argv) {
 	char more_money[] = "more-money";
 	char magic_square[] = "magic-square";
 	char sudoku[] = "sudoku";
+	char x_sudoku[] = "x-sudoku";
 
 	if(argc < 3){
 		cout << "Usage : KaboSolve <problem> <number of solutions> [<options>]" << endl;
 		cout << "Valid options : " << endl;
-		cout << "	problem : n-queens, more-money, magic-square, sudoku" << endl;
+		cout << "	problem : n-queens, more-money, magic-square, sudoku, x-sudoku" << endl;
 		cout << "	number of solutions : \"one\" (finds the first solution) or \"all\" (finds all solutions)" << endl;
 		cout << "	options : additional options" << endl;
 	}
@@ -126,30 +127,45 @@ int main(int argc, char **argv) {
 				}
 			}
 		} 
-		else if(strstr(argv[1], sudoku) && strlen(argv[1]) == strlen(sudoku)){
-			cout << "***** SUDOKU problem *****" << endl << endl;;
+		else if ((strstr(argv[1], sudoku) && strlen(argv[1]) == strlen(sudoku)) || (strstr(argv[1], x_sudoku) && strlen(argv[1]) == strlen(x_sudoku))) {
+			cout << "***** SUDOKU problem *****" << endl << endl;
+
+			if(argc <= 3){
+				cout << "Usage : KaboSolve sudoku <number of solutions> <size of the latin squares>" << endl;
+				cout << "	number of solutions : \"one\" (finds the first solution) or \"all\" (finds all solutions)" << endl;
+				cout << "	size of the square : size of the square array" << endl;
+				cout << endl << "Example : \"KaboSolve sudoku all 2\" to find all the solution of the sudoku problem for a square of size 4x4" << endl;
+			}
+			else{
+				int N = atoi(argv[3]);
 				
-			Problem *p = new PSudoku();
-			
-			Solver s(p);
-			debut = clock();
+				if(N <= 0){
+					cout << "ERROR : the size of the square must be greater than 0" << endl;
+				}
+				else{
+					PSudoku *p;
+					if (strstr(argv[1], x_sudoku)) {
+						p = new PSudoku(N, true);
+					} else {
+						p = new PSudoku(N, false);
+					}
 
-			if(strstr(argv[2], "one"))
-				s.solve();
-			else if(strstr(argv[2], "all"))
-				s.solveAll();
-			else
-				cout << "ERROR : <number of solution> parameter accepts only \"one\" or \"all\" value" << endl;
+					Solver s(p);
+					debut = clock();
 
-			fin = clock();
+					if(strstr(argv[2], "one"))
+						s.solve();
+					else if(strstr(argv[2], "all"))
+						s.solveAll();
+					else
+						cout << "ERROR : <number of solution> parameter accepts only \"one\" or \"all\" value" << endl;
 
-			cout << endl << "Time : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
+					fin = clock();
+
+					cout << endl << "Time : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
+				}
+			}
 		}
-		else{
-			cout << "ERROR : the problem : " << argv[1] << " doesn't exist" << endl;
-		}
-
-		cout << endl << "======== END ========" << endl;
 	}
 
 	return 0;
