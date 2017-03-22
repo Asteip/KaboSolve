@@ -3,6 +3,7 @@
 #include "problems/pNQueen.hpp"
 #include "problems/pMoreMoney.hpp"
 #include "problems/pMagicSquare.hpp"
+#include "problems/pSudoku.hpp"
 #include "domain.hpp"
 #include "constraint.hpp"
 #include "constraints/cInfOrEqual.hpp"
@@ -124,6 +125,24 @@ int main(int argc, char **argv) {
 					cout << endl << "Time : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 				}
 			}
+		} else if(strstr(argv[1], "sudoku")){
+			cout << "***** Problème du sudoku. *****" << endl << endl;;
+				
+			Problem *p = new PSudoku();
+			
+			Solver s(p);
+			debut = clock();
+
+			if(strstr(argv[2], "one"))
+				s.solve();
+			else if(strstr(argv[2], "all"))
+				s.solveAll();
+			else
+				cout << "ERREUR : ce choix de solver n'existe pas." << endl;
+
+			fin = clock();
+
+			cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 		}
 		else if(strstr(argv[1], sudoku) && strlen(argv[1]) == strlen(sudoku)){
 			cout << "***** SUDOKU problem *****" << endl << endl;
