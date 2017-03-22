@@ -126,7 +126,10 @@ int main(int argc, char **argv) {
 				}
 			}
 		} else if(strstr(argv[1], "sudoku")){
-			cout << "***** Problème du sudoku. *****" << endl << endl;;
+			
+		}
+		else if(strstr(argv[1], sudoku) && strlen(argv[1]) == strlen(sudoku)){
+			cout << "***** SUDOKU problem *****" << endl << endl;;
 				
 			Problem *p = new PSudoku();
 			
@@ -138,30 +141,11 @@ int main(int argc, char **argv) {
 			else if(strstr(argv[2], "all"))
 				s.solveAll();
 			else
-				cout << "ERREUR : ce choix de solver n'existe pas." << endl;
-
-			fin = clock();
-
-			cout << endl << "temps : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
-		}
-		else if(strstr(argv[1], sudoku) && strlen(argv[1]) == strlen(sudoku)){
-			cout << "***** SUDOKU problem *****" << endl << endl;
-				
-			/*Problem *p = new PMoreMoney();
-			Solver s(p);
-
-			debut = clock();
-
-			if(strstr(argv[2], "one"))
-				s.solve();
-			else if(strstr(argv[2], "all"))
-				s.solveAll();
-			else
 				cout << "ERROR : <number of solution> parameter accepts only \"one\" or \"all\" value" << endl;
 
 			fin = clock();
 
-			cout << endl << "Time : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;*/
+			cout << endl << "Time : " << (double)(fin-debut)/CLOCKS_PER_SEC << "s" << endl;
 		}
 		else{
 			cout << "ERROR : the problem : " << argv[1] << " doesn't exist" << endl;
