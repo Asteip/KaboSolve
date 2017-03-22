@@ -2,7 +2,6 @@
 Solver of constraint satisfaction problems with "branch-and-prune" strategy. The "branch-and-prune" strategy uses in this project is "Forward checking".
 
 # Compile and Installation
-===========================
 
 Clone the repository :
 ```bash
