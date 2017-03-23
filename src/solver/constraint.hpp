@@ -26,6 +26,8 @@ public:
 	/*!
 	 * \brief Checks if the constraint is respected.
 	 * \details This function is called when a variable is fixed in a domain. All domain are checked using this constraint.
+	 * \param id The domain which is the cause of the applyConstraint called.
+	 * \return True if some modifications occured, false otherwise.
 	 */
 	virtual bool applyConstraint(int id) = 0;
 

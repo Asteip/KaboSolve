@@ -15,17 +15,35 @@ class Domain {
 		int value;		// Fixed value in the domain.
 		bool isSet;		// True if the domain is fixed, false otherwise.
 
-		int *possibles; // Array of index of the possible values in the domain.
-		int *pruned;	// Array of index of the pruned values of the domain.
-		int *indexes;	// Id of the variable which has enforced the pruning.
+		int *possibles; // Array of the possible values in the domain.
+		int *pruned;	// Array of the pruned values in the domain.
+		int *indexes;	// Array of id of the variable which has enforced the pruning.
 	
 	private:
-		// UTILITAIRES
-		void triBulle();					// A l'initialisation, trie le domaine des valeurs possibles dans l'ordre croissant
-		int dichotomie(int val);			// Donne l'indice de la valeur dans le domaine des possibles (plus ou moins 1 si la valeur est absente)
-		int indVal(int val);				// Donne l'indice de la valeur dans le domaine des possibles (-1 si enixstante)
-		int posValSupOuEgale(int val);		// Donne l'indice de la plus petite valeur supérieure ou égale dans le domaine des possibles 
-		int posValInfOuEgale(int val);		// Donne l'indice de la plus grande valeur inférieure ou égale dans le domaine des possibles
+		/*
+		 * At initialisation, sort the array of possible values in croissant order.
+		 */
+		void triBulle();
+		
+		/*
+		 * Returns the index of the value "val" in the array of possible values (more or less 1 if the value doesn't exist).
+		 */
+		int dichotomie(int val);
+		
+		/*
+		 * Returns the index of the value "val" in the array of possible values (-1 if the value doesn't exist).
+		 */
+		int indVal(int val);
+		
+		/*
+		 * Returns the index of the lowest value greater or equal than "val" in the array of possible values.
+		 */
+		int posValSupOuEgale(int val);
+		
+		/*
+		 * Returns the index of the greatest value lower or equal than "val" in the array of possible values.
+		 */
+		int posValInfOuEgale(int val);
 
 	public:
 		/*!
@@ -68,7 +86,7 @@ class Domain {
 
 		/*!
 		 * \brief Undo the pruning of the values which have been pruned by the variable with the given id.
-		 * \param id The identifiant of the variable responsible of the pruning, this is also the variable which was fixed.
+		 * \param id The identifiant of the domain responsible of the pruning, this is also the variable which was set.
 		 */
 		void backtrack(int id);
 

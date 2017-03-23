@@ -1,5 +1,11 @@
 # KaboSolve
 Solver of constraint satisfaction problems with "branch-and-prune" strategy. The "branch-and-prune" strategy uses in this project is "Forward checking".
+The following problems are available :
+* N-queens
+* Send More Money
+* Magic square
+* sudoku (without diagonals)
+* x-sudoku (with diagonals)
 
 # Compile and Installation
 
@@ -16,8 +22,8 @@ make
 
 Run the KaboSolve :
 ```bash
-# probleme : choose among the following problem : N-reines, more-money magic-square
-# choix-solver : "one" (finds the first solution) or "all" (finds all solution)
-# options : some problem asks for option like N-reines
-./KaboSolve <probleme> <choix-solver> [<options>]
+# problem : choose among the following problem : n-queens, more-money, magic-square, sudoku, x-sudoku
+# number of solutions : "one" (finds the first solution) or "all" (finds all solution)
+# options : additional options
+./KaboSolve <problem> <number of solutions> [<options>]
 ```
