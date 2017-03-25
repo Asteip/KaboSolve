@@ -144,12 +144,6 @@ class Domain {
 		 * \param id The new value of the id for the current domain.
 		 */
 		void setId(int id);
-		
-		// AFFICHAGE DEBUG
-		/*void affichage();
-		void affichageNQueen();
-		void affichageResultatNQueen();
-		void affichageResultatSENDMORY();*/
 };
 
 #endif

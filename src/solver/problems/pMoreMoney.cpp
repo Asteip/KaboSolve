@@ -15,7 +15,7 @@ PMoreMoney::PMoreMoney() {
 
 PMoreMoney::~PMoreMoney() {}
 
-void PMoreMoney::applyConstraint(int id){	// méthode optimale ?
+void PMoreMoney::applyConstraint(int id){
 	for(int i = 0 ; i < _m ; ++i){
 		_constraints[i]->applyConstraint(id);
 	}
