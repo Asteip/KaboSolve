@@ -12,12 +12,6 @@ PMagicSquare::PMagicSquare(int n) {
 
 PMagicSquare::~PMagicSquare() {}
 
-/*void PMagicSquare::applyConstraint(int id){
-	for(int i = 0 ; i < _m ; ++i){
-		_constraints[i]->applyConstraint(id);
-	}
-}*/
-
 void PMagicSquare::generateProblem() {
 	int *liste;
 	Domain **lDom, **lDomCol, **lDomLine;

@@ -15,11 +15,11 @@ PMoreMoney::PMoreMoney() {
 
 PMoreMoney::~PMoreMoney() {}
 
-void PMoreMoney::applyConstraint(int id){
+/*void PMoreMoney::applyConstraint(int id){
 	for(int i = 0 ; i < _m ; ++i){
 		_constraints[i]->applyConstraint(id);
 	}
-}
+}*/
 
 void PMoreMoney::generateProblem() {
 	int i, j;
