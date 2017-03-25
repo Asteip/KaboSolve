@@ -17,7 +17,6 @@ class PMagicSquare : public Problem {
 		PMagicSquare(int n);
 		~PMagicSquare();
 
-		//void applyConstraint(int id);
 		void afficher();
 
 	private:
