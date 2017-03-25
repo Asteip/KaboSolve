@@ -24,7 +24,7 @@ void PSudoku::generateProblem() {
 	_n = latinSquare*latinSquare;
 	_m = 3*latinSquare;
 	if (_diag) {
-		_m+=2;
+		_m+=4;
 	}
 	_domains = new Domain * [_n];
 	_constraints = new Constraint * [_m];
@@ -70,14 +70,28 @@ void PSudoku::generateProblem() {
 		for (int i = 0; i < latinSquare; ++i) {
 				lDom[i] = _domains[i*latinSquare+i];
 		}
-		_constraints[_m-2] = new CAllDiff(lDom, latinSquare);
+		_constraints[_m-4] = new CAllDiff(lDom, latinSquare);
 
 		// ALLDIFF SUR LA DIAGONALE 2
 		lDom = new Domain * [latinSquare];
 		for (int i = 0; i < latinSquare; ++i) {
 			lDom[i] = _domains[((i+1)*latinSquare)-i-1];
 		}
-		_constraints[_m-1] = new CAllDiff(lDom, latinSquare);
+		_constraints[_m-3] = new CAllDiff(lDom, latinSquare);
+
+		// BREAK SYMMETRY THANKS TO DIAGONAL 1 AND 2
+		lDom = new Domain * [2];
+		liste = new int [2];
+		liste[0] = 1;
+		liste[1] = -1;
+		lDom[0] = _domains[0];
+		lDom[1] = _domains[_n-1];
+		_constraints[_m-2] = new CInfOrEqual(liste, 0, lDom, 2);
+
+		lDom = new Domain * [2];
+		lDom[0] = _domains[latinSquare-1];
+		lDom[1] = _domains[_n-latinSquare];
+		_constraints[_m-1] = new CInfOrEqual(liste, 0, lDom, 2);
 	}
 }
 

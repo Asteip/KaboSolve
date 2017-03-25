@@ -67,7 +67,7 @@ void Solver::solve() {
 
 		if (i != -1) {
 			_p->afficher();
- 			//cout << endl;
+ 			cout << endl;
 	 		cout << endl << "Trouver une autre solution ? o/n : ";
 	 		cin >> entree;
 	 		chercher = ((entree == "o") || (entree == "O"));
@@ -128,8 +128,8 @@ void Solver::solveAll() {
 		}
 
 		if (i != -1) {
-			/*_p->afficher();
-			cout << endl;*/
+			//_p->afficher();
+			//cout << endl;
 			++nbSol;
 			--i;
 		} else {

@@ -58,18 +58,17 @@ bool CEqual::applyConstraint(int id) {
 			if (tdSOE < 0) {
 				--tSOE;
 			}
-
 			if (tSOE == tdSOE) {
-				if (_coefficients[i] > 0) {
-					modification = _domains[i]->prunerInf(id, tSOE-1) || modification;
-				} else {
+				if (_coefficients[i] < 0) {
 					modification = _domains[i]->prunerSup(id, tSOE+1) || modification;
+				} else {
+					modification = _domains[i]->prunerInf(id, tSOE-1) || modification;
 				}
 			} else {
-				if (_coefficients[i] > 0) {
-					modification = _domains[i]->prunerInf(id, tSOE) || modification;
-				} else {
+				if (_coefficients[i] < 0) {
 					modification = _domains[i]->prunerSup(id, tSOE+1) || modification;
+				} else {
+					modification = _domains[i]->prunerInf(id, tSOE) || modification;
 				}
 			}
 
