@@ -4,6 +4,7 @@
 #include "../problem.hpp"
 #include "../constraint.hpp"
 #include "../constraints/cAllDiff.hpp"
+#include "../constraints/cInfOrEqual.hpp"
 
 class PSudoku : public Problem {
 
