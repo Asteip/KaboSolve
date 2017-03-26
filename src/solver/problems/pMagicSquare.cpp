@@ -90,7 +90,6 @@ void PMagicSquare::generateProblem() {
 	lDom[0] = _domains[0];
 	lDom[1] = _domains[_n-1];
 	_constraints[_m-1] = new CInfOrEqual(liste, 0, lDom, 2);
-
 }
 
 void PMagicSquare::afficher() {

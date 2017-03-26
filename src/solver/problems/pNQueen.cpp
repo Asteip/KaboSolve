@@ -36,6 +36,8 @@ void PNQueen::generateProblem() {
 	line = new int [2];
 	line[0] = 1;
 	line[1] = -1;
+
+	// Contrainte pour casser une symétrie
 	_constraints[2] = new CInfOrEqual(line, 0, lDom, 2);
 
 }

@@ -129,7 +129,8 @@ void Solver::solveAll() {
 
 		if (i != -1) {
 			_p->afficher();
-			cout << nbSol << endl;
+			cout << endl;
+			cout << "-------------------------------------------" << endl;
 			cout << endl;
 			++nbSol;
 			--i;
