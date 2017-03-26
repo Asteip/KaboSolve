@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+
+% ENCODAGE CARACTERES
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+
+% MISE EN FORME
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{placeins}
+\usepackage[]{algorithm2e}
+\usepackage{array}
+\usepackage{listings}
+
+\hypersetup{linkcolor=blue}
+
+% Pour les listes à puces
+\frenchbsetup{StandardLists=true} 
+\setitemize[0]{font=\color{black},label=\ding{227},itemsep=0pt}
+
+\title{KaboSolve - Rapport}
+\author{Alexis BONNIN - Jocelin CAILLOUX}
+\date{Mars 2017}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\paragraph{}
+Le projet KaboSolve s'inscrit dans le module de "Constraint Programming". Il consiste en la réalisation d'un solveur générique de CSP de la forme (X,D,C) où $X = \{x_1, \ldots, x_v\}$ est un ensemble de valeurs, $D = \{D_1, \ldots, D_n\}$ est un ensemble de domaines et $C = \{c_1, \ldots, c_m\}$ est un ensemble de contraintes. Celui-ci est basé sur un algorithme de type "branch-and-prune". Nous nous sommes fixé l'objectif de réaliser un solveur le plus générique possible, afin que toutes sortes de problèmes soient facilement modélisable en C++, tout en tentant de garder une bonne efficacité de résolution. Tout d'abord, nous présenterons la structure du programme ainsi que les différents choix algorithmiques, puis nous décrirons la complexité des différentes opérations (pruning, backtrack, \dots), leur fréquence et la complexité des différents problèmes. Nous étudierons les complexités des problèmes des n-reines, du carré magique et du sudoku et sa variante x-sudoku. Le projet propose également de résoudre le problème de Send More Money mais aucune étude n'est réalisée à ce sujet.
+
+\input{1-installation}
+\FloatBarrier
+
+\input{2-structure}
+\FloatBarrier
+
+\input{3-complexite}
+\FloatBarrier
+
+\section{Conclusion}
+
+\paragraph{}
+Même si nous n'avons pas implémenté plusieurs méthodes de pruning, nous pensons avoir atteint notre objectif : la réalisation d'un solveur générique relativement efficace. En effet, pour résoudre un problème sur notre solveur, il suffit au minimum de définir ses domaines et ses contraintes comme on le ferait pour utiliser un solveur comme GLPK (mais en C++). Nos plus grandes difficultés ont été le débogage. En effet, notre solveur utilise beaucoup les indices de tableau et certaines erreurs nous ont donné des bugs difficiles à remarquer, à comprendre et à identifier. Après avoir atteint une base solide pour notre solveur, nous en avons profité pour effectuer beaucoup d'essais et mieux réaliser l'importance des symétries ou l'influence de l'ordre des contraintes sur le temps de résolution selon le problème. Nous avons choisi des problèmes compliqués (sudoku et carré magique) afin de tester le comportement de notre solveur et le temps de résolution en fonction de la taille des instances. Pour faire évoluer notre projet, nous pourrions tenter l'implémentation d'un bitset et la comparer, effectuer plus de tests sur des stratégies de résolution comme d'autres méthodes de pruning (bien que celle que nous utilisons semble être la plus efficace et la plus généralisable). De plus, nous pourrions implémenter un problème de cryptarithme plus général que le Send More Money en laissant choisir les différents mots voire les opérateurs. Nous pourrions implémenter un parseur qui permettrait de lire une modélisation sous un format bien défini et ainsi résoudre tous types de problèmes de manière encore plus générale (à la manière de MiniZinc).
+
+\end{document}

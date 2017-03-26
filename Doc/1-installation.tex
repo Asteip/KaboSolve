@@ -1,0 +1,45 @@
+\section{Installation et exécution du solveur}
+
+\subsection{Installation}
+    \paragraph{}
+    Tout d'abord, le projet est disponible sur GitHub à l'adresse suivante :  \url{https://github.com/Asteip/KaboSolve}. Pour installer le solveur, exécuter les commandes suivantes dans un terminal :
+    
+    \begin{lstlisting}[language=bash,captionpos=b]
+    # cloner le depot
+    git clone https://github.com/Asteip/KaboSolve
+    
+    # installer le solveur
+    cd KaboSolve
+    make
+    \end{lstlisting}
+    
+\subsection{Exécution}
+    \paragraph{}
+    Une fois le solveur installé, exécuter la commande suivante pour lancer le solveur :
+    
+    \begin{lstlisting}[language=bash,captionpos=b]
+    
+    ./KaboSolve <problem> <number of solutions> [<options>]
+
+    \end{lstlisting}
+    
+    \paragraph{}
+    L'argument <problem> prend les valeurs suivantes : 
+    
+    \begin{itemize}
+        \item n-queens : problème des N-Queens, il faut ajouter l'option "number of queens" correspondant au nombre de reines (N). Exemple d'utilisation : \textit{./KaboSolve n-queens all 10}.
+        
+        \item more-money : problème du Send More Money. Exemple d'utilisation : \textit{./KaboSolve more-money all}.
+        
+        \item magic-square : problème du carré magique, il faut ajouter l'option "size of square" correspondant à la taille du carré. Exemple d'utilisation : \textit{./KaboSolve magic-square all 5}.
+        
+        \item sudoku / x-sodoku : problème du sudoku, il est possible de choisir entre "sudoku" qui ne prend pas en compte les diagonales de la grille et "x-sudoku" qui prend en compte les diagonales. Il faut ajouter l'option "size of the latin square" qui correspond à la taille N d'une "région" du sudoku, la taille de la grille sera donc de $N^{2} \times N^{2}$. Exemple d'utilisation : \textit{./KaboSolve sudoku all 3}.
+    \end{itemize}
+    
+    \paragraph{}
+    L'argument <number of solutions> prend les valeurs suivantes :
+    
+    \begin{itemize}
+        \item one : exécution du solveur jusqu'à ce qu'il trouve une solution du problème.
+        \item all : exécution du solveur jusqu'à ce qu'il trouve toutes les solutions du problème.
+    \end{itemize}

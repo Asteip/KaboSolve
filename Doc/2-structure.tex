@@ -1,0 +1,62 @@
+\section{Présentation de la structure du solveur}
+
+\paragraph{}
+Afin de rendre l'application extensible, celle-ci est découpée en plusieurs classes. Le pattern \textit{Strategy} est utilisé pour permettre d'implémenter différents type de contraintes suivant le problème donné. Le projet est structuré de la manière suivante :
+
+\begin{itemize}
+    \item \textbf{Problem} (classe abstraite) : Cette classe définit un problème, elle est constituée d'un ensemble de domaines et de contraintes associées aux domaines. Pour créer un problème spécifique, il faut étendre cette classe, par exemple le problème des n-queens a été défini dans une classe héritée \textbf{CNqueen}. Cette classe contient les domaines et les contraintes. C'est la classe problème qui choisit le prochain domaine à fixer (celui possédant le plus petit domaine par défaut). C'est aussi le problème qui définit la manière dont sont appliquées les contraintes (par défaut, elles sont toutes appliquées une fois et sont toutes appliquées à nouveau tant qu'une modification à été apportée).
+    
+    \item \textbf{Domain} : Cette classe définit un domaine de valeurs ordonnées pour chacune des variables définies dans le problème. Elle contient un tableau toujours trié des valeurs possibles (non prunées) et une pile (LIFO) des valeurs prunées. Ainsi une recherche dichotomique est possible dans le tableau des valeurs possibles et lors du backtracking, les valeurs à remettre dans le domaine des valeurs possibles sont les dernières des valeurs prunées et la recherche dans le domaine des valeurs possibles est simplifiée en O(log n). Le plus coûteux dans cette classe est le décalage récurrent des valeurs tu tableau des possibles (en O(n)), qui est heureusement fortement accéléré par l'usage automatique de la mémoire cache. Chaque domaine possède un identifiant unique (définit manuellement lors de l'appel du constructeur). Cet identifiant sert à reconnaître les valeurs qui ont été retirées par la fixation du domaine et ainsi effectuer le backtracking simplement. La fixation du domaine se fait en choisissant une valeur aléatoire dans la liste des valeurs possibles.
+    
+    \item \textbf{Constraint} (classe abstraite) : Cette classe définit une contrainte. Pour définir une contrainte spécifique, il faut étendre cette classe. Par exemple, la classe \textbf{CAllDiff} hérite de \textbf{Constraint} et représente la contrainte "AllDifferent". Cette classe possède la liste des domaines concernés par la contrainte. Elle peut imposer aux domaines une valeur maximum, minimum ou simplement pruner une valeur unique. Lors de l'appel de la contrainte, elle applique le pruning sur tous les domaines non fixés.
+    
+    \item \textbf{Solver} :  Cette classe prend en entrée un problème. Elle le résout en fixant une à une les variables et en appliquant les contraintes après chaque fixation. Le domaine fixé est alors ajouté à une pile pour le récupérer lors du backtracking. Lorsque le domaine courant est vide ou est déjà fixé, le solveur appelle la méthode de bactracking du problème qui l'applique sur tous les domaines.
+\end{itemize}
+
+\paragraph{}
+Après l'implémentation de cette base pour notre solveur, ajouter des contraintes et des problèmes au solveur est une tâche grandement facilitée. Le plus difficile lors de la création d'un problème est d'associer les bonnes contraintes aux bons domaines, ce qui correspond justement à la difficulté de la modélisation.\\
+
+Un gros avantage de cette structure est que nous n'effectuons aucune recopie, en effet, nous stockons l'identifiant du domaine qui a imposé le pruning des valeurs des autres domaines. Ainsi, il est simple de réinsérer ces valeurs dans la liste des valeurs possibles.
+
+\paragraph{}
+Ci-dessous l'algorithme de branch-and-prune utilisé par le solveur :
+\newline
+
+\begin{algorithm}[H]
+ \KwData{Problème prob}
+ \KwResult{Les variables du problème sont fixées et correspondent à une solution, s'il en existe une}
+ pile : pile de domaines\;
+ dom : domaine courant\;
+ ind : entier\;
+ ind $\leftarrow$ 0\;
+ dom $\leftarrow$ meilleurDomaine(prob)\;
+ \While{((ind != -1) ET (ind != prob.n))} {
+  \eIf{(estFixé(dom))}{
+   bactrack(prob)\;
+   \eIf{(size(dom) > 0)}{
+   fixer(dom)\;
+   appliquerContraintes(prob)\;
+   i $\leftarrow$ i+1\;
+   dom $\leftarrow$ meilleurDomaine(prob)\;
+   }{
+    i $\leftarrow$ i-1\;
+   dom $\leftarrow$ top(pile)\;
+   }
+   }
+   {
+   \eIf{(size(dom) > 0)}{
+   fixer(dom)\;
+   push(pile, dom)\;
+   appliquerContraintes(prob)\;
+   i $\leftarrow$ i+1\;
+   dom $\leftarrow$ meilleurDomaine(prob)\;
+   pop(pile)\;
+   }{
+   i $\leftarrow$ i-1\;
+   pop(pile)\;
+   push(pile, dom)\;
+   }
+   }
+ }
+ \caption{Algorithme de branch-and-prune}
+\end{algorithm}

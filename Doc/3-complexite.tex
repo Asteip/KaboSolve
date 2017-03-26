@@ -1,0 +1,147 @@
+\section{Étude de la complexité des différents problèmes}
+
+\subsection{Complexité algorithmique des différentes opérations}
+
+Cette partie détaille les différentes complexités concernant les $n$ domaines de $v$ valeurs et les $m$ contraintes.
+
+\subsubsection{Domaines}
+Le tableau \ref{Tab-Complexite-Domaine} donne la complexité algorithmique des opérations d'un domaine.
+
+\begin{figure}[!h]
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+             & \multicolumn{2}{c|}{\textbf{Pire cas}} & \multicolumn{2}{c|}{\textbf{Meilleur cas}} \\ \hline
+            \textbf{Opération} & \textbf{Notre structure} & \textbf{Bitset} & \textbf{Notre structure} & \textbf{Bitset} \\ \hline
+            Pruning une valeur & $O(v)$ & $O(log_2 v)|O(1)$ & $\Omega(1)$ & $\Omega(1)$ \\ \hline
+            Pruning valeurs supérieures & $O(v)$ & $O(v)$  & $\Omega(1)$ & $\Omega(1)$ \\ \hline
+            Pruning valeurs inférieures & $O(v)$ & $O(v)$ & $\Omega(1)$ & $\Omega(1)$ \\ \hline
+            Backtracking & $O(v^2)$ & $\Theta(v)$ & $\Omega(1)$ & $\Theta(v)$ \\ \hline
+            Fixer un domaine & $O(v)$ & $O(v)$ & $\Omega(1)$ & $\Omega(1)$ \\ \hline
+        \end{tabular}
+        \caption{Complexités algorithmiques des opérations sur un domaine}
+        \label{Tab-Complexite-Domaine}
+    \end{center}
+\end{figure}
+
+\subsubsection{Contraintes}
+Le tableau \ref{Tab-Complexite-Contraintes} donne la complexité algorithmique du pruning des différentes contraintes.
+
+\begin{figure}[!h]
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+             & \multicolumn{2}{c|}{\textbf{Pire cas}} & \multicolumn{2}{c|}{\textbf{Meilleur cas}} \\ \hline
+            \textbf{Opération} & \textbf{Notre structure} & \textbf{Bitset} & \textbf{Notre structure} & \textbf{Bitset} \\ \hline
+            attaques diagonales (n-queen) & $O(n*v)$ & $O(n*log_2v)|O(n)$ & $\Omega(n)$ & $\Omega(n)$ \\ \hline
+            all different & $O(n*v)$ & $O(n*log_2v)|O(n)$ & $\Omega(n)$ & $\Omega(n)$ \\ \hline
+            inférieur ou égal & $O(n*v)$ & $O(n*v)$ & $\Omega(n)$ & $\Omega(n)$ \\ \hline
+            supérieur ou égal & $O(n*v)$ & $O(n*v)$ & $\Omega(n)$ & $\Omega(n)$ \\ \hline
+            égalité & $O(n*v)$ & $O(n*v)$ & $\Omega(n)$ & $\Omega(n)$ \\ \hline
+        \end{tabular}
+        \caption{Complexités algorithmiques de l'application des contraintes}
+        \label{Tab-Complexite-Contraintes}
+    \end{center}
+\end{figure}
+
+Vous nous avez soumis l'idée d'utiliser un bitset pour différencier les valeurs possibles ou retirées d'un domaine. Nous avons décidé de ne pas l'implémenter car notre algorithme est déjà suffisamment efficace et nous devions aussi passer du temps sur l'implémentation des contraintes et le débogage. Cela dit, nous avons estimé qu'un bitset permettrait d'atteindre une complexité globalement meilleure sans être significatif. Deux versions du bitset sont possibles, celle où nous stockons les valeurs non présentes dans le domaine entre le min et le max (ces valeurs sont associées à une valeur fausse systématiquement dans le bitset), dans ce cas retirer une valeur se fait en $O(1)$ mais l'algorithme est d'autant ralenti que le domaine est creux. Ou bien la variante que je préfère pour sa stabilité où nous stockons pour chaque valeur son indice dans le bitset, ce qui permet de stocker juste le nombre de bits nécessaires et où retirer une valeur se fait en $O(log_2v)$.
+
+\subsection{Temps de résolution des problèmes}
+
+Cette partie présente les temps de résolution (en secondes) des problèmes suivants : n-reines, carré magique et sudoku. Le problème Send More Money n'est pas étudié puisqu'il possède une complexité constante et sa résolution est rapide. Une valeur $X$ signifie qu'une solution est trouvée en temps raisonnable dans au moins 5\% des essais (inférieur à 3 minutes). Dans les autres cas, $\infty$ est indiqué.
+
+\subsubsection{N-reines}
+
+Le tableau \ref{Tab-Temps-NQueen} présente les temps d'exécution du solveur sur le problème des N-Queen. Les temps pour trouver une solution sur ce problème sont assez stables. Nous n'avons pas effectué de moyenne, les valeurs indiquées sont des ordres de grandeur. Nous avons ajouté une contrainte afin de casser une symétrie, ce qui nous permet d'après nos tests de trouver plus vite toutes les solutions et aussi de trouver plus vite une solution unique. Nous avons réussi à casser une seule symétrie, le nombre de solutions est au mieux divisé par deux.
+
+\begin{figure}[!h]
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            \textbf{N} & \textbf{Une solution} & \textbf{Toutes les solutions} & \textbf{Nombre de solutions} \\ \hline
+            8 & $1.7e^{-4}$ & $4.8e^{-4}$ & $46$ \\ \hline
+            10 & $2.2e^{-4}$ & $7.5e^{-3}$ & $362$ \\ \hline
+            11 & $4.9e^{-4}$ & $2.7e^{-2}$ & $1340$ \\ \hline
+            12 & $2.1e^{-4}$ & $1.2e^{-1}$ & $7100$ \\ \hline
+            13 & $2.1e^{-4}$ & $5.9e^{-1}$ & $36856$ \\ \hline
+            14 & $2.2e^{-4}$ & $3.3$ & $182798$ \\ \hline
+            15 & $3.6e^{-4}$ & $20$ & $1139592$ \\ \hline
+            16 & $3.2e^{-4}$ & $130$ & $7386256$ \\ \hline
+            20 & $3.8e^{-4}$ & $\infty$ & $\infty$ \\ \hline
+            100 & $6.8e^{-4}$ & $\infty$ & $\infty$ \\ \hline
+            1000 & $2.1e^{-1}$ & $\infty$ & $\infty$ \\ \hline
+            2000 & $2.0$ & $\infty$ & $\infty$ \\ \hline
+            3000 & $7.5$ & $\infty$ & $\infty$ \\ \hline
+            4000 & $22$ & $\infty$ & $\infty$ \\ \hline
+            5000 & $38$ & $\infty$ & $\infty$ \\ \hline
+            6000 & $62$ & $\infty$ & $\infty$ \\ \hline
+            7000 & $96$ & $\infty$ & $\infty$ \\ \hline
+            8000 & $140$ & $\infty$ & $\infty$ \\ \hline
+            9000 & $180$ & $\infty$ & $\infty$ \\ \hline
+            10000 & $230$ & $\infty$ & $\infty$ \\ \hline
+        \end{tabular}
+        \caption{Temps de calcul pour le problème des N-Queen en secondes}
+        \label{Tab-Temps-NQueen}
+    \end{center}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Carré magique}
+Le tableau \ref{Tab-Temps-Magic-Square} présente les temps d'exécution du solveur sur le problème du carré magique. Les temps pour trouver une solution sur ce problème sont variés et nous n'avons pas réalisé de moyenne. Pour le carré magique, nous nous arrêtons à n=20 de manière arbitraire. Nous avons ajouté trois contraintes de comparaison sur les coins du carré afin de casser toutes les symétries possibles. Ainsi, nous pouvons ainsi trouver toutes les solutions plus rapidement (bien que cela soit trop long à partir de n=5). Nous n'avons pas déterminé l'influence de cette symétrie sur la recherche d'une seule solution, ces contraintes peuvent accélérer, ralentir ou bien n'avoir aucun impact sur le temps résolution et cela semble aussi dépendre de la taille du carré d'après nos essais.
+
+\begin{figure}[!h]
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            \textbf{N} & \textbf{Une solution} & \textbf{Toutes les solutions} & \textbf{Nombre de solutions} \\ \hline
+            1 & $1e^{-5}$ & $1e^{-5}$ & $1$ \\ \hline
+            2 & $5e^{-5}$ & $5e^{-5}$ & $0$ \\ \hline
+            3 & $2e^{-4}$ & $2e^{-4}$ & $1$ \\ \hline
+            4 & $1e^{-3}$ & $3.1e^{-1}$ & $880$ \\ \hline
+            5 & $mostly<1$ & $\infty$ & $\infty$ \\ \hline
+            6 & $mostly<1$ & $\infty$ & $\infty$ \\ \hline
+            7 & $mostly<1$ & $\infty$ & $\infty$ \\ \hline
+            8 & $mostly<1$ & $\infty$ & $\infty$ \\ \hline
+            9 & $mostly<1$ & $\infty$ & $\infty$ \\ \hline
+            10 & $mostly<1$ & $\infty$ & $\infty$ \\ \hline
+            11 & $mostly<1$ & $\infty$ & $\infty$ \\ \hline
+            12 & $mostly<1$ & $\infty$ & $\infty$ \\ \hline
+            13 & $X$ & $\infty$ & $\infty$ \\ \hline
+            14 & $X$ & $\infty$ & $\infty$ \\ \hline
+            15 & $X$ & $\infty$ & $\infty$ \\ \hline
+            16 & $X$ & $\infty$ & $\infty$ \\ \hline
+            17 & $X$ & $\infty$ & $\infty$ \\ \hline
+            18 & $X$ & $\infty$ & $\infty$ \\ \hline
+            19 & $X$ & $\infty$ & $\infty$ \\ \hline
+            20 & $X$ & $\infty$ & $\infty$ \\ \hline
+        \end{tabular}
+        \caption{Temps de calcul pour le problème des N-Queen en secondes}
+        \label{Tab-Temps-Magic-Square}
+    \end{center}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Sudoku}
+
+Le tableau \ref{Tab-Temps-Sudoku} présente les temps d'exécution du solveur sur le problème du Sudoku. Les temps pour trouver une solution sur ce problème sont variés et nous n'avons pas réalisé de moyenne. Nous n'avons trouvé aucun moyen de casser les symétries des solutions du sudoku. En revanche, les contraintes all different sur les diagonales du x-sudoku nous permettent de casser deux symétries. Nous pensions que le x-sudoku serait plus simple à résoudre. En effet, nous pensions que ses deux contraintes supplémentaires nous permettraient de plonger plus vite vers de bonnes solutions et d'éviter plus facilement les mauvaises. Pourtant, et ceux même en cassant les deux symétries, nous remarquons que le problème du sudoku classique est plus simple à résoudre.
+
+\begin{figure}[!h]
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            \textbf{} & \multicolumn{2}{c|}{\textbf{Une solution}} & \multicolumn{2}{c|}{\textbf{Toutes les solutions}}  \\ \hline
+            \textbf{N} & \textbf{sudoku} & \textbf{x-sudoku} & \textbf{sudoku} & \textbf{x-sudoku} \\ \hline
+            1 & $1e^{-4}$ & $1e^{-4}$ & $1e^{-5}$ & $1e^{-5}$ \\ \hline
+            2 & $1e^{-4}$ & $1e^{-4}$ & $2e^{-3}$ & $1e^{-4}$ \\ \hline
+            3 & $2e^{-4}$ & $5e^{-4}$ & $\infty$ & $\infty$ \\ \hline
+            4 & $2e^{-3}$ & $5e^{-3}$ & $\infty$ & $\infty$ \\ \hline
+            5 & $mostly<1$ & $mostly<1$ & $\infty$ & $\infty$ \\ \hline
+            6 & $X$ & $\infty$ & $\infty$ & $\infty$ \\ \hline
+            7 & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\ \hline
+        \end{tabular}
+        \caption{Temps de calcul pour le problème du sudoku en secondes}
+        \label{Tab-Temps-Sudoku}
+    \end{center}
+\end{figure}
